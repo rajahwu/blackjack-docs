@@ -1,23 +1,36 @@
 ---
-const links = [
+interface Link {
+  href: string;
+  label: string;
+}
+
+const links: Link[] = [
   { href: "/blackjack", label: "Overview" },
   { href: "/blackjack/phrasebook", label: "Phrasebook" },
   { href: "/blackjack/drills", label: "Drills" },
   { href: "/blackjack/troubleshooting", label: "Troubleshooting" },
   { href: "/blackjack/trainer-notes", label: "Trainer Notes" },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <aside style="width: 220px; padding: 1rem; border-right: 1px solid #ccc;">
   <nav>
     <ul style="list-style: none; padding: 0; margin: 0;">
-      {links.map(link => (
-        <li style="margin-bottom: 0.5rem;">
-          <a href={link.href} style="text-decoration: none; color: #333;">
-            {link.label}
-          </a>
-        </li>
-      ))}
+      {links.map((link: Link) => {
+        const isActive = currentPath === link.href;
+        return (
+          <li style="margin-bottom: 0.5rem;">
+            <a
+              href={link.href}
+              style={`text-decoration: none; color: ${isActive ? "#0070f3" : "#333"}; font-weight: ${isActive ? "bold" : "normal"};`}
+            >
+              {link.label}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   </nav>
 </aside>
