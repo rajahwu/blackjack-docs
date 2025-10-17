@@ -1,0 +1,29 @@
+---
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title ? `${title} | Blackjack Manual` : "Blackjack Manual"}</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body>
+    <header style="padding: 1rem; border-bottom: 1px solid #ccc;">
+      <h1 style="margin: 0; font-size: 1.25rem;">
+        <a href="/" style="text-decoration: none; color: inherit;">
+          Blackjack Training Manual
+        </a>
+      </h1>
+    </header>
+
+    <main style="padding: 2rem; max-width: 800px; margin: auto;">
+      <slot />
+    </main>
+
+    <footer style="padding: 1rem; border-top: 1px solid #ccc; text-align: center; font-size: 0.9rem; color: #666;">
+      © {new Date().getFullYear()} Blackjack Docs
+    </footer>
+  </body>
+</html>
