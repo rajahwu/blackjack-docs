@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   /* Colors */
@@ -7,7 +8,7 @@
   --color-offwhite: #F5F4F2;
   --color-teal: #00B2A9;
   --color-emerald: #0B6B3F;
-  
+
   /* Custom color utilities */
   --color-* {
     initial-value: var(--color);
@@ -15,14 +16,42 @@
 }
 
 /* Apply colors as Tailwind utilities */
-.bg-charcoal { background-color: var(--color-charcoal); }
-.bg-gold { background-color: var(--color-gold); }
-.bg-offwhite { background-color: var(--color-offwhite); }
-.bg-teal { background-color: var(--color-teal); }
-.bg-emerald { background-color: var(--color-emerald); }
+.bg-charcoal {
+  background-color: var(--color-charcoal);
+}
 
-.text-charcoal { color: var(--color-charcoal); }
-.text-gold { color: var(--color-gold); }
-.text-offwhite { color: var(--color-offwhite); }
-.text-teal { color: var(--color-teal); }
-.text-emerald { color: var(--color-emerald); }
+.bg-gold {
+  background-color: var(--color-gold);
+}
+
+.bg-offwhite {
+  background-color: var(--color-offwhite);
+}
+
+.bg-teal {
+  background-color: var(--color-teal);
+}
+
+.bg-emerald {
+  background-color: var(--color-emerald);
+}
+
+.text-charcoal {
+  color: var(--color-charcoal);
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.text-offwhite {
+  color: var(--color-offwhite);
+}
+
+.text-teal {
+  color: var(--color-teal);
+}
+
+.text-emerald {
+  color: var(--color-emerald);
+}
