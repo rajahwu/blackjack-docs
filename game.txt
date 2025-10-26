@@ -1,0 +1,280 @@
+import React, { useState, useCallback, useEffect, useMemo } from  '@astrojs/react';
+
+// Import Semantic Tokens for TREX Clarity Styling
+import { color, space, font, radius } from '@trex-clarity/design-system/tokens';
+
+// --- Card and Deck Logic ---
+
+const suits = ['♠', '♥', '♦', '♣'];
+const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+
+const getCardValue = (card) => {
+  const v = card.value;
+  if (['K', 'Q', 'J'].includes(v)) return 10;
+  if (v === 'A') return 11;
+  return parseInt(v, 10);
+};
+
+const calculateHandValue = (hand) => {
+  let value = hand.reduce((sum, card) => sum + getCardValue(card), 0);
+  let aceCount = hand.filter(card => card.value === 'A').length;
+
+  while (value > 21 && aceCount > 0) {
+    value -= 10; // Convert an Ace from 11 to 1
+    aceCount -= 1;
+  }
+  return value;
+};
+
+const createDeck = () => {
+  let deck = [];
+  for (const suit of suits) {
+    for (const value of values) {
+      deck.push({ suit, value });
+    }
+  }
+  // Simple Fisher-Yates shuffle
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+  return deck;
+};
+
+// --- Custom Hook for Game State Management (Simplified for Trainer) ---
+
+const useGameEngine = (initialPlayers = 7) => {
+  const [deck, setDeck] = useState([]);
+  const [hands, setHands] = useState([]); 
+  const [dealerHand, setDealerHand] = useState({ cards: [], value: 0, status: 'Dealer', name: 'Dealer (You)' });
+  const [gameState, setGameState] = useState('betting'); 
+  const [message, setMessage] = useState('Click "Deal" to start a new round.');
+
+  const dealCard = useCallback((hand, currentDeck) => {
+    if (currentDeck.length === 0) {
+      currentDeck = createDeck();
+    }
+    const card = currentDeck.pop();
+    hand.cards.push(card);
+    hand.value = calculateHandValue(hand.cards);
+    return { hand, deck: currentDeck };
+  }, []);
+
+  const resetGame = useCallback(() => {
+    setDeck(createDeck());
+    
+    const newHands = Array.from({ length: initialPlayers }, (_, i) => ({
+      name: `Player ${i + 1}`,
+      cards: [],
+      value: 0,
+      status: 'Waiting', // Waiting, Playing, Busted, Stand
+    }));
+    setHands(newHands);
+    setDealerHand({ cards: [], value: 0, status: 'Dealer', name: 'Dealer (You)' });
+    setGameState('betting');
+    setMessage('New game started. Click "Deal" to begin.');
+  }, [initialPlayers]);
+
+  useEffect(() => {
+    resetGame();
+  }, [resetGame]);
+
+  const startRound = useCallback(() => {
+    let newDeck = createDeck();
+    let newHands = hands.map(h => ({ ...h, cards: [], value: 0, status: 'Playing' }));
+    let newDealerHand = { ...dealerHand, cards: [], value: 0 };
+    
+    // Deal 2 cards to each player and the dealer
+    for (let i = 0; i < 2; i++) {
+      newHands = newHands.map(hand => {
+        let result = dealCard(hand, newDeck);
+        return result.hand;
+      });
+      let result = dealCard(newDealerHand, newDeck);
+      newDealerHand = result.hand;
+    }
+
+    setHands(newHands);
+    setDealerHand(newDealerHand);
+    setDeck(newDeck);
+    setMessage(`Cards dealt. Dealer's visible card value: ${getCardValue(newDealerHand.cards[1])}.`);
+    setGameState('playing');
+  }, [hands, dealerHand, dealCard]);
+  
+  return {
+    hands, dealerHand, gameState, message, startRound, resetGame
+  };
+};
+
+// --- UI Components ---
+
+const Card = ({ card, isHidden = false }) => {
+  // Use semantic tokens for card colors
+  const primaryColor = (card.suit === '♥' || card.suit === '♦') ? color.status.error : color.text.default;
+  const secondaryColor = color.surface.default;
+
+  const displayValue = isHidden ? '?' : card.value;
+  const displaySuit = isHidden ? '?' : card.suit;
+
+  return (
+    <div style={{
+        width: '6rem', height: '8rem', // Adjusted size for better visibility
+        backgroundColor: secondaryColor,
+        borderRadius: radius.card,
+        boxShadow: `0 4px 6px -1px ${color.border.strong}`,
+        display: 'flex', flexDirection: 'column', justifyContent: 'space-between', 
+        padding: space.component.padding, margin: '4px',
+        color: primaryColor,
+        border: `1px solid ${color.border.default}`
+    }}>
+      <div style={{ fontSize: font.body.default.size, fontWeight: 'bold' }}>
+        {displayValue}
+      </div>
+      <div style={{ fontSize: font.heading.lg.size, textAlign: 'center' }}>
+        {displaySuit}
+      </div>
+      <div style={{ fontSize: font.body.default.size, fontWeight: 'bold', alignSelf: 'flex-end', transform: 'rotate(180deg)' }}>
+        {displayValue}
+      </div>
+    </div>
+  );
+};
+
+const HandDisplay = ({ hand, isDealer, hideFirstCard = false }) => {
+  const value = calculateHandValue(hand.cards);
+  
+  // If dealer and first card is hidden, value is based on only the visible card
+  const displayValue = (isDealer && hideFirstCard && hand.cards.length > 1) 
+    ? getCardValue(hand.cards[1]) : value;
+
+  // Use semantic tokens for the display container
+  const containerStyle = {
+    padding: space.component.padding, 
+    margin: space.component.padding, 
+    borderRadius: radius.card,
+    backgroundColor: isDealer ? color.surface.elevated : color.surface.default, 
+    border: isDealer ? `2px solid ${color.action.primary.bg}` : `1px solid ${color.border.default}`,
+    boxShadow: `0 2px 4px ${color.border.strong}`
+  };
+  
+  return (
+    <div style={containerStyle}>
+      <h3 style={{
+          fontSize: font.body.default.size, 
+          fontWeight: 'bold', 
+          marginBottom: space.component.padding,
+          color: color.text.default
+      }}>
+        {hand.name}
+        <span style={{ fontSize: font.body.small.size, color: color.text.subtle, marginLeft: '8px' }}>
+          ({hand.status})
+        </span>
+      </h3>
+      <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+        {hand.cards.map((card, index) => (
+          <Card 
+            key={index} 
+            card={card} 
+            isHidden={isDealer && hideFirstCard && index === 0} 
+          />
+        ))}
+      </div>
+      <p style={{ 
+          fontSize: font.heading.lg.size, 
+          fontWeight: 'bolder', 
+          marginTop: space.component.padding,
+          color: color.text.default
+      }}>
+        Score: {displayValue}
+      </p>
+    </div>
+  );
+};
+
+// --- Main Blackjack Component ---
+
+export const Blackjack = () => {
+  const { hands, dealerHand, gameState, message, startRound, resetGame } = useGameEngine(7);
+
+  // Determine if the dealer's first card should be hidden (during the playing phase)
+  const hideDealerCard = gameState === 'playing';
+
+  // Use semantic tokens for the game table background
+  const tableStyle = {
+    backgroundColor: color.status.success, // Green felt color
+    padding: space.layout.section,
+    borderRadius: radius.card,
+    boxShadow: `0 8px 16px ${color.neutral[900]}`
+  };
+
+  return (
+    <div style={{ padding: space.layout.gutter, fontFamily: font.family.base, backgroundColor: color.surface.elevated, minHeight: '100vh', color: color.text.default }}>
+      
+      {/* Game Title and Status Area */}
+      <div style={{ textAlign: 'center', marginBottom: space.layout.gutter }}>
+        <h1 style={{ fontSize: font.heading.xl.size, fontWeight: 'bolder', color: color.action.primary.bg }}>
+          TREX Clarity Blackjack Trainer
+        </h1>
+        <p style={{ fontSize: font.body.default.size, color: color.text.subtle }}>{message}</p>
+      </div>
+
+      {/* Control Button */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: space.component.padding, marginBottom: space.layout.gutter }}>
+        {(gameState === 'betting' || gameState === 'game_over') && (
+          <button
+            onClick={startRound}
+            style={{ 
+                backgroundColor: color.action.primary.bg, 
+                color: color.action.primary.text,
+                padding: '10px 20px', 
+                borderRadius: radius.button, 
+                fontWeight: 'bold', 
+                border: 'none', 
+                cursor: 'pointer' 
+            }}
+          >
+            DEAL NEW ROUND
+          </button>
+        )}
+        <button
+          onClick={resetGame}
+          style={{ 
+              backgroundColor: color.action.secondary.bg, 
+              color: color.action.secondary.text,
+              padding: '10px 20px', 
+              borderRadius: radius.button, 
+              fontWeight: 'bold', 
+              border: 'none', 
+              cursor: 'pointer' 
+          }}
+        >
+          RESET GAME
+        </button>
+      </div>
+
+      {/* Game Table Layout */}
+      <div style={tableStyle}>
+        
+        {/* Players Hands (Top Grid) */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: space.component.padding, marginBottom: space.layout.gutter }}>
+            {hands.map((hand, index) => (
+              <HandDisplay 
+                key={index} 
+                hand={hand} 
+                isDealer={false} 
+              />
+            ))}
+        </div>
+        
+        {/* Dealer Hand (Bottom Center) */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: space.layout.section }}>
+          <HandDisplay 
+            hand={dealerHand} 
+            isDealer={true} 
+            hideFirstCard={hideDealerCard}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
