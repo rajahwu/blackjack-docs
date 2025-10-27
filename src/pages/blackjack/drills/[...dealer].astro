@@ -1,25 +1,85 @@
 ---
-// This dynamic page fetches and renders a single drill
 import { getCollection } from 'astro:content';
-import RehearsalSheetLayout from '../../../layouts/RehearsalSheetLayout.astro';
 
-// 1. This function is required for static site generation
-// It tells Astro which paths to build
 export async function getStaticPaths() {
-  const allDrills = await getCollection('dealer-guides');
-  
-  return allDrills.map(drill => ({
-    params: { dealer: drill.slug },
-    props: { drill },
+  const dealerGuides = await getCollection('dealer-guides');
+  return dealerGuides.map((entry) => ({
+    params: { dealer: entry.slug },
+    props: { entry, allGuides: dealerGuides },
   }));
 }
 
-// 2. Get the specific drill for this page
-const { drill } = Astro.props;
-const { Content } = await drill.render();
+const { entry, allGuides } = Astro.props;
 ---
 
-<!-- 3. Render the layout and pass the MDX content -->
-<RehearsalSheetLayout frontmatter={drill.data}>
-  <Content />
-</RehearsalSheetLayout>
+<style>
+  main {
+    background: radial-gradient(circle at center, #0b3d0b, #052405);
+    min-height: 100vh;
+    display: flex;
+    color: #fff;
+  }
+
+  aside {
+    width: 260px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    padding: 1rem;
+  }
+
+  aside nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  aside a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+
+  aside a:hover {
+    background: rgba(255,255,255,0.1);
+  }
+
+  aside a.active {
+    background: rgba(255,215,0,0.2);
+    color: gold;
+    font-weight: 600;
+  }
+
+  section.content {
+    flex: 1;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: gold;
+    text-shadow: 0 0 15px rgba(255,215,0,0.8);
+    margin-bottom: 1rem;
+  }
+</style>
+
+<main>
+  <aside>
+    <nav>
+      <a href="/blackjack/drills">← Back to Drills</a>
+      {allGuides.map((guide) => (
+        <a
+          href={`/blackjack/drills/${guide.slug}/`}
+          class={guide.slug === entry.slug ? 'active' : ''}
+        >
+          {guide.data.title}
+        </a>
+      ))}
+    </nav>
+  </aside>
+
+  <section class="content">
+    <h1>{entry.data.title}</h1>
+    <entry.Content />
+  </section>
+</main>
