@@ -1,4 +1,4 @@
-<svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://wwwgeo.org/2000/svg">
+<svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M150 75C150 116.421 116.421 150 75 150V0C116.421 0 150 33.5786 150 75Z" fill="#00E6A8"/>
 <path d="M0 75C0 33.5786 33.5786 0 75 0V150C33.5786 150 0 116.421 0 75Z" fill="#5A4BFF"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="40" font-family="sans-serif" font-weight="bold">NICO</text>

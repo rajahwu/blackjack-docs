@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const guides = await getCollection("dealer-guides");
+---
+
+<BaseLayout title="Dealer Drills">
+  <h1>Dealer Rehearsal Sheets</h1>
+  <ul>
+    {guides.map((guide) => (
+      <li>
+        <a href={`/blackjack/drills/${guide.slug}/`}>{guide.data.title}</a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

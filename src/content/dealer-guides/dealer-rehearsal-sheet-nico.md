@@ -2,7 +2,6 @@
 title: "Dealer Rehearsal Sheet — Nico"
 description: "Digital edition for shuffle precision, verbal timing, and table presence training."
 tags: ["dealer training", "rehearsal", "blackjack"]
-layout: ../../layouts/RehearsalSheetLayout.astro
 ---
 
 # 🎯 **Dealer Rehearsal Sheet — “Nico”**
@@ -115,6 +114,3 @@ layout: ../../layouts/RehearsalSheetLayout.astro
 | Week 3 | Recovery smoothness | % natural resets |  |  |
 | Week 4 | Banter variation | # phrases rotated |  |  |
 
----
-
-🧭 *Next version idea:* add `<DrillLog />` and `<BeatMeter />` components for live tracking.

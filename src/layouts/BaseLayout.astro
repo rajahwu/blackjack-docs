@@ -1,36 +1,101 @@
 ---
 import "../styles/global.css";
+import dealerBadge from "../assets/dealer-badge.svg";
 import Sidebar from "../components/Sidebar.astro";
-const { title } = Astro.props<{ title?: string }>;
-const year = new Date().getFullYear();
+
+const { title = "Blackjack Docs", description = "" } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <meta charSet="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title ? `${title} | Blackjack Manual` : "Blackjack Manual"}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
   </head>
-  <body style="margin: 0; font-family: sans-serif;">
-    <header style="padding: 1rem; border-bottom: 1px solid #ccc;">
-      <h1 style="margin: 0; font-size: 1.25rem;">
-        <a href="/" style="text-decoration: none; color: inherit;">
-          Blackjack Training Manual
-        </a>
-      </h1>
-    </header>
 
-    <div style="display: flex; min-height: 80vh;">
-      <Sidebar />
-      <main style="flex: 1; padding: 2rem; max-width: 800px;">
+  <body>
+    <main class="layout">
+
+      <Sidebar /> 
+      <section class="content">
         <slot />
-      </main>
-    </div>
-
-    <footer
-      style="padding: 1rem; border-top: 1px solid #ccc; text-align: center; font-size: 0.9rem; color: #666;"
-    >
-      © {year} Blackjack Docs
-    </footer>
+      </section>
+    </main>
   </body>
+
+  <style>
+    :root {
+      --accent: #00e6a8;
+      --bg: #0f1117;
+      --panel: #1a1d29;
+      --text: #f5f5f5;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: 100vh;
+    }
+
+    .dealer-badge {
+      background: linear-gradient(180deg, rgba(90,75,255,0.3), rgba(15,17,23,0.9));
+      border-right: 1px solid rgba(0,230,168,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+
+    .dealer-badge img {
+      width: 100px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 6px rgba(0,230,168,0.6));
+    }
+
+    .badge-label {
+      text-align: center;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      border-top: 1px solid rgba(0,230,168,0.3);
+      padding-top: 0.5rem;
+    }
+
+    .content {
+      padding: 2rem 3rem;
+      background: var(--panel);
+      border-left: 2px solid rgba(0,230,168,0.2);
+      box-shadow: inset 0 0 30px rgba(0,230,168,0.1);
+      overflow-y: auto;
+    }
+
+    h1, h2, h3 {
+      color: var(--accent);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    a:hover {
+      opacity: 0.8;
+    }
+  </style>
 </html>

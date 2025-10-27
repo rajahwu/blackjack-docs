@@ -1,0 +1,62 @@
+//background.svg
+<svg width="150" height="210" viewBox="0 0 150 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="150" height="210" rx="12" fill="#5A4BFF"/>
+<rect x="10" y="10" width="130" height="190" rx="6" stroke="#00E6A8" stroke-width="2"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#00E6A8" font-size="40" font-family="sans-serif" font-weight="bold">GTTM</text>
+</svg>
+//card-back.svg
+<svg width="150" height="210" viewBox="0 0 150 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="150" height="210" rx="12" fill="#5A4BFF"/>
+<rect x="10" y="10" width="130" height="190" rx="6" stroke="#00E6A8" stroke-width="2"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#00E6A8" font-size="40" font-family="sans-serif" font-weight="bold">GTTM</text>
+</svg>
+//dealer-badge.svg (nico)
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="50" y="150" width="100" height="20" rx="10" fill="#5A4BFF"/>
+<ellipse cx="100" cy="150" rx="50" ry="10" fill="#0F1117" fill-opacity="0.2"/>
+<rect x="50" y="130" width="100" height="20" rx="10" fill="#00E6A8"/>
+<ellipse cx="100" cy="130" rx="50" ry="10" fill="#0F1117" fill-opacity="0.2"/>
+<rect x="50" y="110" width="100" height="20" rx="10" fill="#5A4BFF"/>
+<ellipse cx="100" cy="110" rx="50" ry="10" fill="#0F1117" fill-opacity="0.2"/>
+<rect x="50" y="90" width="100" height="20" rx="10" fill="#00E6A8"/>
+<ellipse cx="100" cy="90" rx="50" ry="10" fill="#0F1117" fill-opacity="0.2"/>
+<rect x="50" y="70" width="100" height="20" rx="10" fill="#5A4BFF"/>
+<ellipse cx="100" cy="70" rx="50" ry="10" fill="#FFFFFF" fill-opacity="0.3"/>
+</svg>
+//feedback-bar.svg//hud-grid.svg
+<svg width="500" height="20" viewBox="0 0 500 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#5A4BFF;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#00E6A8;stop-opacity:1" />
+  </linearGradient>
+</defs>
+<rect width="500" height="20" rx="10" fill="url(#grad)" />
+</svg>
+//phrase-panel-bg.svg
+<svg width="400" height="100" viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+    <feMerge>
+      <feMergeNode in="coloredBlur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</defs>
+<rect width="400" height="100" rx="10" fill="#0F1117" fill-opacity="0.8"/>
+<rect x="1" y="1" width="398" height="98" rx="9" stroke="#00E6A8" stroke-width="2" filter="url(#glow)"/>
+</svg>
+//table-felt.svg
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1920" height="1080" fill="#0F1117"/>
+<defs>
+<filter id="noise" x="0" y="0" width="100%" height="100%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/>
+  <feComponentTransfer>
+    <feFuncA type="linear" slope="0.1"/>
+  </feComponentTransfer>
+</filter>
+</defs>
+<rect width="1920" height="1080" fill="#5A4BFF" filter="url(#noise)"/>
+</svg>
