@@ -4,6 +4,14 @@ import { getCollection } from "astro:content";
 import CardValueTrainer from "../../../components/react/CardValueTrainer";
 
 const guides = await getCollection("dealer-guides");
+export async function getStaticPaths() {
+  const guides = await getCollection("dealer-guides");
+  
+  return guides.map((guide) => ({
+    params: { dealer: guide.slug },
+    props: { guide },
+  }));
+}
 ---
 
 <BaseLayout title="Dealer Drills">
@@ -39,61 +47,6 @@ const guides = await getCollection("dealer-guides");
   </section>
 
   <style>
-    .header {
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      color: #00e6a8;
-    }
-
-    .intro {
-      color: #ccc;
-      max-width: 600px;
-      line-height: 1.6;
-    }
-
-    .trainer {
-      margin: 2rem 0;
-      padding: 1.5rem;
-      border: 2px solid #00e6a8;
-      border-radius: 12px;
-      background: rgba(15, 17, 23, 0.8);
-      box-shadow: 0 0 20px rgba(90, 75, 255, 0.3); 
-    }
-
-    .guide-list ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .guide-list li {
-      margin: 1rem 0;
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      background: rgba(90, 75, 255, 0.1);
-      border: 1px solid rgba(0, 230, 168, 0.3);
-      transition: 0.2s ease;
-    }
-
-    .guide-list li:hover {
-      background: rgba(0, 230, 168, 0.15);
-      transform: translateX(4px);
-    }
-
-    .guide-list a {
-      color: #00e6a8;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
-
-    .guide-list .desc {
-      margin: 0.3rem 0 0;
-      color: #bbb;
-      font-size: 0.9rem;
-    }
-  </style>
+    </style>
 </BaseLayout>
+

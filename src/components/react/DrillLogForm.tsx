@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const DrillLogForm = () => {
   const [entry, setEntry] = useState({ date: "", bpm: "", notes: "" });
 
@@ -18,3 +20,5 @@ const DrillLogForm = () => {
     </form>
   );
 };
+
+export default DrillLogForm;
