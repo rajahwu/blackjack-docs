@@ -1,106 +1,129 @@
 ---
-// A component based on the CSS in your BaseLayout
 import dealerBadge from "../assets/dealer-badge.svg";
 
-// Helper function to check for active paths
 const currentPath = Astro.url.pathname;
-const isActive = (path: string) => currentPath.startsWith(path);
+
+// Helper to check if a link is active
+const isActive = (path: string) => {
+  if (path === '/blackjack/overview') {
+    return currentPath === path;
+  }
+  return currentPath.startsWith(path);
+};
+
+const links = [
+  { href: "/blackjack/overview", label: "Overview" },
+  { href: "/blackjack/drills", label: "Dealer Drills" },
+  { href: "/blackjack/phrasebook", label: "Phrasebook" },
+  { href: "/blackjack/trainer-notes", label: "Trainer Notes" },
+];
 ---
 
 <aside class="sidebar">
-    <div class="dealer-badge">
-      <img src={dealerBadge.src} alt="Dealer Badge" />
-      <span class="badge-label">GTTM Training</span>
-    </div>
+  <div class="dealer-badge">
+    <img src={dealerBadge.src} alt="Dealer Badge" />
+    <span class="badge-label">GTTM Training</span>
+  </div>
 
-    <nav class="sidebar-nav">
-        <a href="/blackjack/overview" class:list={[{ active: isActive('/blackjack/overview') }]}>
-            Overview
-        </a>
-        <a href="/blackjack/drills" class:list={[{ active: isActive('/blackjack/drills') }]}>
-            Dealer Drills
-        </a>
-        <a href="/blackjack/phrasebook" class:list={[{ active: isActive('/blackjack/phrasebook') }]}>
-            Phrasebook
-        </a>
-        <a href="/blackjack/trainer-notes" class:list={[{ active: isActive('/blackjack/trainer-notes') }]}>
-            Trainer Notes
-        </a>
-    </nav>
+  <nav class="sidebar-nav">
+    {links.map(link => (
+      <a 
+        href={link.href} 
+        class:list={['nav-link', { active: isActive(link.href) }]}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
 </aside>
 
 <style>
+  .sidebar {
+    background: linear-gradient(180deg, rgba(15, 17, 23, 0.95), rgba(90, 75, 255, 0.1));
+    border-right: 2px solid rgba(0, 230, 168, 0.3);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .dealer-badge {
+    background: linear-gradient(
+      180deg,
+      rgba(90, 75, 255, 0.3),
+      rgba(15, 17, 23, 0.9)
+    );
+    border-bottom: 1px solid rgba(0, 230, 168, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .dealer-badge img {
+    width: 100px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 8px rgba(0, 230, 168, 0.6));
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 8px rgba(0, 230, 168, 0.6));
+    }
+    50% {
+      filter: drop-shadow(0 0 16px rgba(0, 230, 168, 0.8));
+    }
+  }
+
+  .badge-label {
+    text-align: center;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #00e6a8;
+    letter-spacing: 0.05em;
+    border-top: 1px solid rgba(0, 230, 168, 0.3);
+    padding-top: 0.5rem;
+    width: 100%;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    color: #b3b3b3;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .nav-link:hover {
+    background: rgba(0, 230, 168, 0.1);
+    color: #00e6a8;
+    border-color: rgba(0, 230, 168, 0.3);
+  }
+
+  .nav-link.active {
+    background: linear-gradient(135deg, rgba(90, 75, 255, 0.3), rgba(0, 230, 168, 0.2));
+    color: #00e6a8;
+    font-weight: 600;
+    border-color: #00e6a8;
+    box-shadow: 0 4px 12px rgba(0, 230, 168, 0.3);
+  }
+
+  @media (max-width: 768px) {
     .sidebar {
-        background: var(--bg);
-        border-right: 1px solid var(--border-color);
-        display: flex;
-        flex-direction: column;
+      display: none;
     }
-
-    .dealer-badge {
-      background: linear-gradient(
-        180deg,
-        rgba(90, 75, 255, 0.3),
-        rgba(15, 17, 23, 0.9)
-      );
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-      position: relative;
-    }
-
-    .dealer-badge img {
-      width: 100px;
-      margin-bottom: 1rem;
-      filter: drop-shadow(0 0 6px rgba(0, 230, 168, 0.6));
-    }
-
-    .badge-label {
-      text-align: center;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      border-top: 1px solid var(--border-color);
-      padding-top: 0.5rem;
-    }
-
-    .sidebar-nav {
-        display: flex;
-        flex-direction: column;
-        padding: 1rem;
-        gap: 0.5rem;
-    }
-
-    .sidebar-nav a {
-        padding: 0.75rem 1rem;
-        border-radius: 6px;
-        color: #b3b3b3;
-        text-decoration: none;
-        transition: all 0.2s ease;
-        font-weight: 500;
-    }
-
-    .sidebar-nav a:hover {
-        background: rgba(0, 230, 168, 0.1);
-        color: var(--accent);
-        opacity: 1;
-    }
-
-    .sidebar-nav a.active {
-        background: var(--purple);
-        color: white;
-        font-weight: 600;
-        box-shadow: 0 4px 12px rgba(90, 75, 255, 0.4);
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        /* Hide sidebar on mobile, would need a toggle button */
-        display: none; 
-      }
-    }
+  }
 </style>
