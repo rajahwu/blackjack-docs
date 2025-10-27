@@ -1,0 +1,300 @@
+// /content/dealer-guides
+---
+title: "Basic Riffle Shuffle"
+description: "Master the fundamental casino riffle shuffle, bridge, and strip."
+tags: ["card handling", "shuffle"]
+difficulty: "beginner"
+---
+
+This drill focuses on the core mechanic of shuffling a six-deck shoe.
+
+## Objectives
+
+- Develop a smooth, consistent riffle shuffle.
+
+- Practice the "bridge" to combine the decks.
+
+- Learn the stripping motion to further randomize cards.
+
+## Setup
+
+- One deck of cards (to start).
+
+- A flat, clear surface.
+
+## Drill Steps
+
+1. The Cut: Split the deck into two roughly equal halves (packets).
+
+2. The Riffle: Hold one packet in each hand. Bend the cards upwards with your thumbs, letting the corners "riffle" together, interleaving the cards.
+
+3. The Bridge: Push the two interleaved packets together. Gently bend them into an arch ("bridge") and let them cascade flat.
+
+4. The Strip:
+
+- Hold the squared deck in your non-dominant hand.
+
+- With your dominant hand, pull a small packet of cards from the center of the deck and place it on top.
+
+- Repeat this 3-4 times.
+
+5. Repeat: Perform the entire sequence (Riffle, Bridge, Strip) 3-4 times for a single deck. For a shoe, this is combined with other shuffle procedures.
+
+## Trainer Notes
+
+- Consistency over Speed: A smooth, error-free shuffle is better than a fast, sloppy one.
+
+- Keep it Low: Don't bridge the cards too high. This prevents cards from being exposed.
+
+- Relax Your Grip: A tense grip makes shuffling harder. Stay relaxed.
+
+---
+title: "Basic Riffle Shuffle"
+description: "Master the fundamental casino riffle shuffle, bridge, and strip."
+tags: ["card handling", "shuffle"]
+difficulty: "beginner"
+---
+
+This drill focuses on the core mechanic of shuffling a six-deck shoe.
+
+## Objectives
+
+- Develop a smooth, consistent riffle shuffle.
+
+- Practice the "bridge" to combine the decks.
+
+- Learn the stripping motion to further randomize cards.
+
+## Setup
+
+- One deck of cards (to start).
+
+- A flat, clear surface.
+
+## Drill Steps
+
+1. The Cut: Split the deck into two roughly equal halves (packets).
+
+2. The Riffle: Hold one packet in each hand. Bend the cards upwards with your thumbs, letting the corners "riffle" together, interleaving the cards.
+
+3. The Bridge: Push the two interleaved packets together. Gently bend them into an arch ("bridge") and let them cascade flat.
+
+4. The Strip:
+
+- Hold the squared deck in your non-dominant hand.
+
+- With your dominant hand, pull a small packet of cards from the center of the deck and place it on top.
+
+- Repeat this 3-4 times.
+
+5. Repeat: Perform the entire sequence (Riffle, Bridge, Strip) 3-4 times for a single deck. For a shoe, this is combined with other shuffle procedures.
+
+## Trainer Notes
+
+- Consistency over Speed: A smooth, error-free shuffle is better than a fast, sloppy one.
+
+- Keep it Low: Don't bridge the cards too high. This prevents cards from being exposed.
+
+- Relax Your Grip: A tense grip makes shuffling harder. Stay relaxed.
+
+---
+title: "Card Drill Sheet — Nico"
+description: "Precision and rhythm drill for dealing accuracy and pacing control."
+tags: ["dealer", "training", "cards", "precision"]
+date: 2025-10-25
+---
+
+import BeatTable from "../../components/react/BeatTable.tsx";
+import IntensityLadder from "../../components/react/IntensityLadder.tsx";
+import SessionTimer from "../../components/react/SessionTimer.tsx";
+import DrillLog from "../../components/react/DrillLog.tsx";
+
+# 🂡 Card Drill — Nico
+
+**Objective:** Build consistency in **dealing technique**, **hand rhythm**, and **table focus** under timed pressure.
+
+---
+
+## 🎴 Drill Overview
+
+| Segment | Focus | Time | Notes |
+| --- | --- | --- | --- |
+| 1 | Warm-up shuffle | 2m | Gentle start, maintain even wrist rotation |
+| 2 | 4-hand simulation | 5m | Announce totals, keep 1s cue gap |
+| 3 | Split/Double simulation | 3m | Maintain calm tone and steady dealing speed |
+| 4 | Recovery phase | 2m | Add deliberate correction, keep rhythm stable |
+
+---
+
+## 🎵 Beat Practice
+
+<BeatTable bpm={100} count={12} client:load />
+
+> Run this beat table while practicing:
+> 1. Shuffle → Fan → Deal 2
+> 2. Announce totals
+> 3. Wait for response (beat pause)
+> 4. React with matching tone
+
+*Adjust BPM between 85–110 for tempo control.*
+
+---
+
+## 🧩 Intensity Ladder
+
+<IntensityLadder
+  stages={[
+    { name: "Slow Precision", bpm: 85 },
+    { name: "Standard Flow", bpm: 95 },
+    { name: "Dealer Pace", bpm: 110 },
+    { name: "Stress Mode", bpm: 120 }
+  ]}
+  client:load
+/>
+
+> Stay within 90–95 BPM for clarity drills; use 110+ only for endurance runs.
+
+---
+
+## ⏱️ Session Timer
+
+<SessionTimer duration="04:00" label="Card Handling Session" client:load />
+
+> Focus on smooth rhythm — avoid snapping or flicking the cards.
+
+---
+
+## 🗒️ Drill Log
+
+<DrillLog
+  fields={["Date", "Drill Type", "Average BPM", "Missed Beats", "Comments"]}
+  client:load
+/>
+
+---
+
+## 🪞 Reflection Notes
+
+**Wins:**  
+– Smooth fan spread at 90 BPM  
+– Consistent “Card out” phrasing  
+
+**Adjustments:**  
+– Watch drift between hand two and three  
+– Maintain tone consistency after corrections  
+
+---
+
+## 📅 Weekly Progress Tracker
+
+| Week | Metric | Result | Notes |
+| --- | --- | --- | --- |
+| Week 1 | Shuffle uniformity | % even fans |  |  |
+| Week 2 | Tempo consistency | BPM variance |  |  |
+| Week 3 | Verbal sync | Phrase/beat alignment |  |  |
+| Week 4 | Recovery steadiness | % rhythm maintained |  |  |
+
+---
+
+*End of card drill session. Review your log, then continue with the Dealer Rehearsal Sheet — Nico.*
+
+---
+title: "Card Drill Sheet — Nico"
+description: "Precision and rhythm drill for dealing accuracy and pacing control."
+tags: ["dealer", "training", "cards", "precision"]
+date: 2025-10-25
+---
+
+import BeatTable from "../../components/react/BeatTable.tsx";
+import IntensityLadder from "../../components/react/IntensityLadder.tsx";
+import SessionTimer from "../../components/react/SessionTimer.tsx";
+import DrillLog from "../../components/react/DrillLog.tsx";
+
+# 🂡 Card Drill — Nico
+
+**Objective:** Build consistency in **dealing technique**, **hand rhythm**, and **table focus** under timed pressure.
+
+---
+
+## 🎴 Drill Overview
+
+| Segment | Focus | Time | Notes |
+| --- | --- | --- | --- |
+| 1 | Warm-up shuffle | 2m | Gentle start, maintain even wrist rotation |
+| 2 | 4-hand simulation | 5m | Announce totals, keep 1s cue gap |
+| 3 | Split/Double simulation | 3m | Maintain calm tone and steady dealing speed |
+| 4 | Recovery phase | 2m | Add deliberate correction, keep rhythm stable |
+
+---
+
+## 🎵 Beat Practice
+
+<BeatTable bpm={100} count={12} client:load />
+
+> Run this beat table while practicing:
+> 1. Shuffle → Fan → Deal 2
+> 2. Announce totals
+> 3. Wait for response (beat pause)
+> 4. React with matching tone
+
+*Adjust BPM between 85–110 for tempo control.*
+
+---
+
+## 🧩 Intensity Ladder
+
+<IntensityLadder
+  stages={[
+    { name: "Slow Precision", bpm: 85 },
+    { name: "Standard Flow", bpm: 95 },
+    { name: "Dealer Pace", bpm: 110 },
+    { name: "Stress Mode", bpm: 120 }
+  ]}
+  client:load
+/>
+
+> Stay within 90–95 BPM for clarity drills; use 110+ only for endurance runs.
+
+---
+
+## ⏱️ Session Timer
+
+<SessionTimer duration="04:00" label="Card Handling Session" client:load />
+
+> Focus on smooth rhythm — avoid snapping or flicking the cards.
+
+---
+
+## 🗒️ Drill Log
+
+<DrillLog
+  fields={["Date", "Drill Type", "Average BPM", "Missed Beats", "Comments"]}
+  client:load
+/>
+
+---
+
+## 🪞 Reflection Notes
+
+**Wins:**  
+– Smooth fan spread at 90 BPM  
+– Consistent “Card out” phrasing  
+
+**Adjustments:**  
+– Watch drift between hand two and three  
+– Maintain tone consistency after corrections  
+
+---
+
+## 📅 Weekly Progress Tracker
+
+| Week | Metric | Result | Notes |
+| --- | --- | --- | --- |
+| Week 1 | Shuffle uniformity | % even fans |  |  |
+| Week 2 | Tempo consistency | BPM variance |  |  |
+| Week 3 | Verbal sync | Phrase/beat alignment |  |  |
+| Week 4 | Recovery steadiness | % rhythm maintained |  |  |
+
+---
+
+*End of card drill session. Review your log, then continue with the Dealer Rehearsal Sheet — Nico.*

@@ -1,0 +1,14 @@
+[
+  {
+    "drill": "card-value-trainer",
+    "duration": 300,
+    "accuracy": 0.93,
+    "timestamp": "2025-10-28T09:22:00Z"
+  },
+  {
+    "drill": "dealer-rhythm-trainer",
+    "bpm": 120,
+    "streak": 45,
+    "timestamp": "2025-10-28T09:35:00Z"
+  }
+]

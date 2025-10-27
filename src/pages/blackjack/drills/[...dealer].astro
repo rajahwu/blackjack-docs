@@ -1,29 +1,107 @@
 ---
-// src/pages/blackjack/drills/[...dealer].astro
-import { getCollection } from 'astro:content';
-import RehearsalSheetLayout from '../../../layouts/RehearsalSheetLayout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import DrillIndex from "../../../drills";
+import CardValueTrainer from "../../../drills/CardValueTrainer";
+import CardShuffleTrainer from "../../../drills/CardShuffleTrainer";
+import DealerRhythmTrainer from "../../../drills/DealerRhythmTrainer";
+import DealerPatterTrainer from "../../../drills/DealerPatterTrainer";
+import DealerRehearsal from "../../../drills/DealerRehearsal";
 
 export async function getStaticPaths() {
-  const dealerGuides = await getCollection('dealer-guides');
-  
-  return dealerGuides.map((entry) => ({
-    params: { dealer: entry.slug },
-    props: { entry },
+  // define which drill routes exist
+  const drills = [
+    "card-value",
+    "card-shuffle",
+    "dealer-rhythm",
+    "dealer-patter",
+    "dealer-rehearsal",
+  ];
+
+  return drills.map((d) => ({
+    params: { dealer: d },
   }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { dealer } = Astro.params;
+const guideCollection = await getCollection("dealer-guides");
 
-// Prepare frontmatter for the layout
-const frontmatter = {
-  title: entry.data.title,
-  description: entry.data.description || '',
-  tags: entry.data.tags || [],
-  difficulty: entry.data.difficulty || 'beginner',
+const registry = {
+  "card-value": {
+    title: "Card Value Trainer",
+    guideSlug: "card-drill-nico",
+    component: CardValueTrainer,
+  },
+  "card-shuffle": {
+    title: "Card Shuffle Trainer",
+    guideSlug: "riffle-shuffle-drill-card",
+    component: CardShuffleTrainer,
+  },
+  "dealer-rhythm": {
+    title: "Dealer Rhythm Trainer",
+    guideSlug: "dealer-rehearsal-worksheet-nico",
+    component: DealerRhythmTrainer,
+  },
+  "dealer-patter": {
+    title: "Dealer Patter Trainer",
+    guideSlug: "phrasebook-nico",
+    component: DealerPatterTrainer,
+  },
+  "dealer-rehearsal": {
+    title: "Dealer Rehearsal",
+    guideSlug: "dealer-rehearsal-log-nico",
+    component: DealerRehearsal,
+  },
 };
+
+const entry = registry[dealer] ?? null;
+const guide = entry ? guideCollection.find((g) => g.slug === entry.guideSlug) : null;
+const DrillComponent = entry ? entry.component : null;
 ---
 
-<RehearsalSheetLayout frontmatter={frontmatter}>
-  <Content />
-</RehearsalSheetLayout>
+
+<BaseLayout title={entry?.title ?? "Dealer Drills"}>
+  <div class="dealer-page grid grid-cols-[260px,1fr] gap-6 bg-[url('/felt-texture.jpg')] bg-cover min-h-screen text-white">
+    <!-- Sidebar -->
+    <aside class="bg-black/70 p-4 backdrop-blur rounded-r-2xl border-r border-green-800">
+      <h2 class="text-lg font-bold mb-3 text-green-300">🎴 Drills</h2>
+      <ul class="space-y-2">
+        <li><a href="/blackjack/drills/card-value" class="hover:text-green-200">Card Value</a></li>
+        <li><a href="/blackjack/drills/card-shuffle" class="hover:text-green-200">Card Shuffle</a></li>
+        <li><a href="/blackjack/drills/dealer-rhythm" class="hover:text-green-200">Dealer Rhythm</a></li>
+        <li><a href="/blackjack/drills/dealer-patter" class="hover:text-green-200">Dealer Patter</a></li>
+        <li><a href="/blackjack/drills/dealer-rehearsal" class="hover:text-green-200">Dealer Rehearsal</a></li>
+      </ul>
+      <div class="mt-6">
+        <a href="/blackjack/drills" class="text-sm underline text-green-400 hover:text-green-200">← Back to Index</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="p-8 bg-black/60 rounded-2xl shadow-2xl border border-green-700">
+      <header class="flex items-center gap-3 mb-6">
+        <div class="px-3 py-1 bg-green-700/40 border border-green-400 rounded-full shadow-[0_0_8px_#22c55e] text-sm uppercase tracking-wide">
+          {entry?.title ?? "Drill"}
+        </div>
+      </header>
+
+      {guide ? (
+        <>
+          <div class="prose prose-invert max-w-none mb-10">
+            <guide.Component />
+          </div>
+
+          {DrillComponent && (
+            <div class="drill-react bg-black/40 border border-green-600 rounded-xl p-6 shadow-inner" client:load>
+              <DrillComponent />
+            </div>
+          )}
+        </>
+      ) : (
+        <div class="text-center py-12 text-gray-300">
+          <p>Drill not found. Choose from the sidebar.</p>
+        </div>
+      )}
+    </main>
+  </div>
+</BaseLayout>

@@ -1,31 +1,32 @@
-import React, { useState } from "react";
-
+// src/drills/index.tsx
 import CardValueTrainer from "./CardValueTrainer";
 import CardShuffleTrainer from "./CardShuffleTrainer";
 import DealerRhythmTrainer from "./DealerRhythmTrainer";
 import DealerPatterTrainer from "./DealerPatterTrainer";
 import DealerRehearsal from "./DealerRehearsal";
 
-type DrillKey =
-  | "cardValue"
-  | "cardShuffle"
-  | "dealerRhythm"
-  | "dealerPatter"
-  | "dealerRehearsal";
-
-const drillRegistry: Record<
-  DrillKey,
-  { name: string; component: React.ReactNode }
-> = {
-  cardValue: { name: "Card Value Trainer", component: <CardValueTrainer /> },
-  cardShuffle: { name: "Card Shuffle Trainer", component: <CardShuffleTrainer /> },
-  dealerRhythm: { name: "Dealer Rhythm Trainer", component: <DealerRhythmTrainer /> },
-  dealerPatter: { name: "Dealer Patter Trainer", component: <DealerPatterTrainer /> },
-  dealerRehearsal: { name: "Dealer Rehearsal", component: <DealerRehearsal /> },
+export const drillRegistry = {
+  "card-value-trainer": CardValueTrainer,
+  "card-shuffle-trainer": CardShuffleTrainer,
+  "dealer-rhythm-trainer": DealerRhythmTrainer,
+  "dealer-patter-trainer": DealerPatterTrainer,
+  "dealer-rehearsal": DealerRehearsal,
 };
 
+// Optional: local drill selector for /blackjack/drills/index.astro
+import React, { useState } from "react";
+
 export default function DrillIndex() {
-  const [active, setActive] = useState<DrillKey | null>(null);
+  const [active, setActive] = useState<string | null>(null);
+
+  const drills = Object.entries(drillRegistry).map(([key, Component]) => ({
+    key,
+    name:
+      key
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase()) || "Unnamed Drill",
+    Component,
+  }));
 
   return (
     <div className="drill-index">
@@ -33,13 +34,13 @@ export default function DrillIndex() {
 
       {!active && (
         <ul className="space-y-2">
-          {Object.entries(drillRegistry).map(([key, drill]) => (
+          {drills.map(({ key, name }) => (
             <li key={key}>
               <button
                 className="px-3 py-2 border rounded hover:bg-gray-100"
-                onClick={() => setActive(key as DrillKey)}
+                onClick={() => setActive(key)}
               >
-                {drill.name}
+                {name}
               </button>
             </li>
           ))}
@@ -54,7 +55,7 @@ export default function DrillIndex() {
           >
             ← Back to drills
           </button>
-          {drillRegistry[active].component}
+          {React.createElement(drillRegistry[active])}
         </div>
       )}
     </div>
