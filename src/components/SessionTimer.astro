@@ -1,0 +1,44 @@
+---
+import { useEffect, useState } from "react";
+
+const { duration = "02:00", label = "Session Timer" } = Astro.props;
+const totalSeconds =
+  parseInt(duration.split(":")[0]) * 60 + parseInt(duration.split(":")[1]);
+
+const [remaining, setRemaining] = useState(totalSeconds);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setRemaining((r) => (r > 0 ? r - 1 : 0));
+  }, 1000);
+  return () => clearInterval(interval);
+}, []);
+
+const minutes = Math.floor(remaining / 60)
+  .toString()
+  .padStart(2, "0");
+const seconds = (remaining % 60).toString().padStart(2, "0");
+---
+
+<div class="timer">
+  <h3>{label}</h3>
+  <div class="time">{minutes}:{seconds}</div>
+  <progress value={totalSeconds - remaining} max={totalSeconds}></progress>
+</div>
+
+<style>
+.timer {
+  text-align: center;
+  color: #00e6a8;
+}
+.time {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+progress {
+  width: 100%;
+  height: 8px;
+  accent-color: #00e6a8;
+}
+</style>

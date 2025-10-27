@@ -1,8 +1,150 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Data for the phrasebook table
+const categories = [
+  {
+    name: "Opening Table",
+    phrases: [
+      { call: "Good morning/afternoon/evening, everyone.", timing: "As players first approach the table." },
+      { call: "Changing in, five hundred dollars.", timing: "When exchanging cash for chips." },
+      { call: "Cheque change, five hundred.", timing: "Announcing to pit boss/cameras." },
+      { call: "Your chips, sir/ma'am. Good luck.", timing: "Pushing chips to the player." },
+    ],
+  },
+  {
+    name: "Gameplay Calls",
+    phrases: [
+      { call: "Bets, please.", timing: "To initiate the betting round." },
+      { call: "No more bets.", timing: "Waving hand over table before dealing." },
+      { call: "Card for the player.", timing: "Dealing first card to players." },
+      { call: "Card for the dealer.", timing: "Dealing card to self." },
+      { call: "Blackjack!", timing: "Player or dealer has a natural 21." },
+      { call: "Insurance is open.", timing: "When dealer's up-card is an Ace." },
+      { call: "Insurance is closed.", timing: "After checking hole card or time elapses." },
+    ],
+  },
+    {
+    name: "Player Actions",
+    phrases: [
+      { call: "Sixteen. (Hit or Stand?)", timing: "Clarifying player's hand total on a decision point." },
+      { call: "Double down.", timing: "Player signals to double." },
+      { call: "Splitting eights.", timing: "Player splits a pair." },
+      { call: "Surrender.", timing: "If player uses surrender option." },
+    ],
+  },
+  {
+    name: "Payouts & Takes",
+    phrases: [
+      { call: "Player wins, twenty.", timing: "Paying a winning bet." },
+      { call: "Dealer takes.", timing: "Collecting a losing bet." },
+      { call: "Push, twenty-two.", timing: "Both player and dealer have same total." },
+      { call: "Even money.", timing: "Paying 1:1 on a Blackjack with dealer Ace up." },
+    ],
+  },
+];
 ---
 
-<BaseLayout title="Phrasebook">
-  <h2>Phrasebook</h2>
-  <p>Dealer calls and standard phrases will go here.</p>
+<BaseLayout title="Dealer Phrasebook" description="Standard calls and timing for blackjack dealing.">
+  <h1 class="page-title">Dealer Phrasebook</h1>
+  <p class="page-subtitle">Standardized verbal calls are key to a professional, secure, and clear game. Practice these calls for timing and clarity.</p>
+
+  {categories.map(category => (
+    <section class="phrase-category">
+      <h2 class="category-title">{category.name}</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Verbal Call</th>
+              <th>Timing / Situation</th>
+            </tr>
+          </thead>
+          <tbody>
+            {category.phrases.map(phrase => (
+              <tr>
+                <td class="phrase-call">"{phrase.call}"</td>
+                <td>{phrase.timing}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  ))}
 </BaseLayout>
+
+<style>
+    .page-title {
+        font-size: 2.5rem;
+        background: linear-gradient(135deg, #00e6a8, #5a4bff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 1.1rem;
+        color: #b3b3b3;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--border-color-dim);
+        padding-bottom: 1.5rem;
+    }
+
+    .phrase-category {
+        margin-bottom: 3rem;
+    }
+
+    .category-title {
+        font-size: 1.8rem;
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid var(--purple);
+        padding-bottom: 0.5rem;
+        display: inline-block;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border-color-dim);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0, 0.2);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 1rem 1.25rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color-dim);
+        line-height: 1.6;
+    }
+
+    thead th {
+        background-color: rgba(90, 75, 255, 0.2);
+        color: var(--accent);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    tbody tr:hover {
+        background-color: rgba(0, 230, 168, 0.05);
+    }
+
+    .phrase-call {
+        color: #f5f5f5;
+        font-weight: 500;
+        font-style: italic;
+    }
+</style>

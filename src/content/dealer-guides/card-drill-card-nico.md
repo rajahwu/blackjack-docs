@@ -2,6 +2,7 @@
 title: "Card Smith Drill Card — Nico"
 description: "Digital edition for shuffle precision, verbal timing, and table presence training."
 tags: ["dealer training", "rehearsal", "blackjack"]
+difficulty: "beginner"
 ---
 
 # One Page Practice Drill Card

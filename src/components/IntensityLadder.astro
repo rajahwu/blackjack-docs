@@ -1,0 +1,40 @@
+---
+import { useState } from "react";
+
+const { stages = [] } = Astro.props;
+const [active, setActive] = useState(0);
+---
+
+<div class="ladder">
+  <h3>Intensity Ladder</h3>
+  {stages.map((stage, i) => (
+    <div
+      class:list={["stage", { active: i === active }]}
+      onClick={() => setActive(i)}
+    >
+      <strong>{stage.name}</strong>
+      <span>{stage.bpm} BPM</span>
+    </div>
+  ))}
+</div>
+
+<style>
+.ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #00e6a8;
+}
+.stage {
+  padding: 0.5rem 1rem;
+  border: 1px solid #00e6a8;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.stage.active {
+  background: #00e6a8;
+  color: #0f1117;
+  font-weight: bold;
+}
+</style>

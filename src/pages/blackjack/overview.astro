@@ -1,8 +1,359 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import DealerNote from "../../components/DealerNote.astro";
+import { getCollection } from "astro:content";
+
+// Fetch drill count for stats
+const guides = await getCollection("dealer-guides");
+const drillCount = guides.length;
+
+// Stats for dashboard
+const stats = [
+  { label: "Active Drills", value: drillCount, icon: "🎴" },
+  { label: "Phrase Categories", value: "4", icon: "💬" },
+  { label: "Training Hours", value: "12+", icon: "⏱️" },
+];
 ---
 
-<BaseLayout title="Overview">
-  <h2>Overview</h2>
-  <p>Dealer calls and standard phrases will go here.</p>
+<BaseLayout title="Blackjack Overview" description="Master the table with GTTM training">
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="gradient-text">Welcome to the Table</span>
+      </h1>
+      <p class="hero-subtitle">
+        Master blackjack dealing through structured drills, precision timing, and professional table presence.
+      </p>
+    </div>
+    
+    <!-- Stats Bar -->
+    <div class="stats-grid">
+      {stats.map(stat => (
+        <div class="stat-card">
+          <span class="stat-icon">{stat.icon}</span>
+          <div class="stat-info">
+            <span class="stat-value">{stat.value}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Navigation Cards -->
+  <section class="nav-cards">
+    <a href="/blackjack/drills" class="nav-card drills">
+      <div class="card-icon">🎯</div>
+      <h2>Dealer Drills</h2>
+      <p>Precision shuffles, deal sequences, and table rhythm exercises.</p>
+      <span class="card-badge">{drillCount} drills</span>
+    </a>
+
+    <a href="/blackjack/phrasebook" class="nav-card phrasebook">
+      <div class="card-icon">📖</div>
+      <h2>Phrasebook</h2>
+      <p>Standard calls, timing patterns, and verbal cues for smooth gameplay.</p>
+      <span class="card-badge">Coming Soon</span>
+    </a>
+
+    <a href="/blackjack/trainer-notes" class="nav-card notes">
+      <div class="card-icon">📝</div>
+      <h2>Trainer Notes</h2>
+      <p>Quick tips, reminders, and best practices from experienced dealers.</p>
+      <span class="card-badge">4 notes</span>
+    </a>
+  </section>
+
+  <!-- Quick Tips -->
+  <section class="tips-section">
+    <h2 class="section-title">Quick Start Tips</h2>
+    
+    <DealerNote title="Start with the Basics" icon="🎴">
+      Begin with card handling drills before moving to full table simulations. Master the riffle shuffle and clean deal placement first.
+    </DealerNote>
+
+    <DealerNote title="Practice with Audio" icon="🎙️">
+      Use a metronome (80-100 BPM) to develop consistent timing. Record yourself to catch verbal tics and improve clarity.
+    </DealerNote>
+
+    <DealerNote title="Daily Consistency" icon="📅">
+      15-20 minutes of focused practice beats 2-hour marathon sessions. Build muscle memory through daily repetition.
+    </DealerNote>
+  </section>
+
+  <!-- Training Path -->
+  <section class="training-path">
+    <h2 class="section-title">Recommended Training Path</h2>
+    
+    <div class="path-steps">
+      <div class="path-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Foundation Week</h3>
+          <p>Card handling, shuffle mechanics, basic deal patterns</p>
+        </div>
+      </div>
+
+      <div class="path-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Timing & Rhythm</h3>
+          <p>Metronome drills, verbal cue practice, BPM control</p>
+        </div>
+      </div>
+
+      <div class="path-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Table Presence</h3>
+          <p>Full game simulations, recovery drills, camera work</p>
+        </div>
+      </div>
+
+      <div class="path-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Performance Ready</h3>
+          <p>Recorded sessions, peer review, certification prep</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(0, 230, 168, 0.2);
+    margin-bottom: 3rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00e6a8, #5a4bff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: #b3b3b3;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .stat-card {
+    background: rgba(90, 75, 255, 0.1);
+    border: 1px solid rgba(0, 230, 168, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    background: rgba(90, 75, 255, 0.15);
+    border-color: rgba(0, 230, 168, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .stat-icon {
+    font-size: 2.5rem;
+  }
+
+  .stat-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #00e6a8;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Navigation Cards */
+  .nav-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .nav-card {
+    position: relative;
+    background: rgba(15, 17, 23, 0.8);
+    border: 2px solid rgba(90, 75, 255, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .nav-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #5a4bff, #00e6a8);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-card:hover {
+    border-color: rgba(0, 230, 168, 0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 230, 168, 0.2);
+  }
+
+  .nav-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .nav-card h2 {
+    color: #00e6a8;
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+  }
+
+  .nav-card p {
+    color: #b3b3b3;
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  .card-badge {
+    display: inline-block;
+    background: rgba(90, 75, 255, 0.2);
+    color: #00e6a8;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+
+  /* Section Titles */
+  .section-title {
+    font-size: 1.8rem;
+    color: #00e6a8;
+    margin: 3rem 0 1.5rem;
+    border-bottom: 2px solid rgba(90, 75, 255, 0.3);
+    padding-bottom: 0.5rem;
+  }
+
+  /* Tips Section */
+  .tips-section {
+    margin: 3rem 0;
+  }
+
+  /* Training Path */
+  .training-path {
+    margin: 3rem 0;
+  }
+
+  .path-steps {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .path-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    background: rgba(90, 75, 255, 0.05);
+    border-left: 4px solid #5a4bff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .path-step:hover {
+    background: rgba(90, 75, 255, 0.1);
+    border-left-color: #00e6a8;
+  }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #5a4bff, #00e6a8);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .step-content h3 {
+    color: #00e6a8;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .step-content p {
+    color: #b3b3b3;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nav-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .path-step {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

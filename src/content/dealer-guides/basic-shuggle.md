@@ -1,0 +1,48 @@
+---
+title: "Basic Riffle Shuffle"
+description: "Master the fundamental casino riffle shuffle, bridge, and strip."
+tags: ["card handling", "shuffle"]
+difficulty: "beginner"
+---
+
+This drill focuses on the core mechanic of shuffling a six-deck shoe.
+
+## Objectives
+
+- Develop a smooth, consistent riffle shuffle.
+
+- Practice the "bridge" to combine the decks.
+
+- Learn the stripping motion to further randomize cards.
+
+## Setup
+
+- One deck of cards (to start).
+
+- A flat, clear surface.
+
+## Drill Steps
+
+1. The Cut: Split the deck into two roughly equal halves (packets).
+
+2. The Riffle: Hold one packet in each hand. Bend the cards upwards with your thumbs, letting the corners "riffle" together, interleaving the cards.
+
+3. The Bridge: Push the two interleaved packets together. Gently bend them into an arch ("bridge") and let them cascade flat.
+
+4. The Strip:
+
+- Hold the squared deck in your non-dominant hand.
+
+- With your dominant hand, pull a small packet of cards from the center of the deck and place it on top.
+
+- Repeat this 3-4 times.
+
+5. Repeat: Perform the entire sequence (Riffle, Bridge, Strip) 3-4 times for a single deck. For a shoe, this is combined with other shuffle procedures.
+
+## Trainer Notes
+
+- Consistency over Speed: A smooth, error-free shuffle is better than a fast, sloppy one.
+
+- Keep it Low: Don't bridge the cards too high. This prevents cards from being exposed.
+
+- Relax Your Grip: A tense grip makes shuffling harder. Stay relaxed.

@@ -1,13 +1,14 @@
 ---
+// Import the SVG properly for Astro's asset pipeline
 import phrasePanelBg from "../assets/phrase-panel-bg.svg";
 
 const { title = "Dealer Note", icon = "🎯" } = Astro.props;
 ---
 
-<section class="dealer-note" role="note" aria-label={title}>
+<section class="dealer-note" style={`background-image: url(${phrasePanelBg.src})`}>
   <div class="note-header">
-    <span class="icon" aria-hidden="true">{icon}</span>
-    <h3 id={`note-${title.toLowerCase().replace(/\s+/g, "-")}`}>{title}</h3>
+    <span class="icon">{icon}</span>
+    <h3>{title}</h3>
   </div>
   <div class="note-body">
     <slot />
@@ -17,7 +18,9 @@ const { title = "Dealer Note", icon = "🎯" } = Astro.props;
 <style>
   .dealer-note {
     position: relative;
-    background: url("{phrasePanelBg.src}") center/cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 12px;
     padding: 1.5rem 2rem;
     margin: 2rem 0;

@@ -1,0 +1,103 @@
+---
+title: "Dealer Rehearsal Sheet — Nico"
+description: "Digital drill sheet for shuffle precision, table rhythm, and recovery timing."
+tags: ["dealer", "training", "rhythm", "timing"]
+date: 2025-10-25
+---
+
+import BeatTable from "../../components/BeatTable.astro";
+import DrillLog from "../../components/DrillLog.astro";
+import IntensityLadder from "../../components/IntensityLadder.astro";
+import SessionTimer from "../../components/SessionTimer.astro";
+
+# 🎯 Dealer Rehearsal Sheet — Nico
+
+**Focus:** Shuffle precision · Verbal timing · Table presence
+
+---
+
+## 🃏 Phrase Deck
+
+| # | Phrase | Function | Intensity | Beat Count | Notes |
+| --- | --- | --- | --- | --- | --- |
+| 1 | “Place your bets, please.” | Engagement | Mid | 2 | Round start |
+| 2 | “Cards coming out.” | Action | Low | 1 | Dealing cue |
+| 3 | “Hand at sixteen.” | Fact | Low | 2 | Neutral tone |
+| 4 | “Would you like to hit or stand?” | Action | Mid | 3 | Decision invite |
+| 5 | “Excellent.” | Reaction | High | 1 | Used on wins |
+| 6 | “Not bad.” | Reaction | Low | 1 | Mid-range feedback |
+| 7 | “Take your time.” | Support | Low | 2 | For hesitation |
+| 8 | “Thanks — correction made; we continue.” | Recovery | Low | 3 | Reset cue |
+| 9 | “All right, new round.” | Engagement | Mid | 2 | Round reset |
+| 10 | “As good as it gets.” | Reaction | High | 1 | Blackjack tone |
+| 11 | “Safe hit.” | Action | Low | 1 | Encourage low score |
+| 12 | “Ideal.” | Reaction | Mid | 1 | Quiet win |
+
+---
+
+## 🕐 Beat Mapping
+
+<BeatTable bpm={85} count={16} client:load />
+
+| Phrase Type | Beat Count | BPM | Cue / Gesture |
+| --- | --- | --- | --- |
+| Micro (e.g., “Hit”) | 1 | 90 | Card tap |
+| Fact (e.g., “Hand at 17”) | 2 | 85 | Card fan |
+| Action (e.g., “Would you like…”) | 3 | 80 | Eye contact / pause |
+| Reaction | 1 | 95 | Smile or nod |
+| Recovery | 3 | 80 | Calm reset tone |
+
+🧩 *Drill variation: shift ±10 BPM per round to build rhythm control.*
+
+---
+
+## ⏱️ Session Timer
+
+<SessionTimer duration="05:00" label="Warm-Up Session" client:load />
+
+---
+
+## 📈 Intensity Ladder
+
+<IntensityLadder
+  stages={[
+    { name: "Calm Dealing", bpm: 80 },
+    { name: "Standard Pace", bpm: 90 },
+    { name: "Performance Mode", bpm: 100 },
+    { name: "Recovery Round", bpm: 85 },
+  ]}
+  client:load
+/>
+
+---
+
+## 🗒️ Daily Drill Log
+
+<DrillLog client:load />
+
+---
+
+## 🪞 Reflection Notes
+
+**Wins:**  
+– Smooth shuffle tempo  
+– Clear decision cues  
+
+**Adjustments:**  
+– Slight pause drift at 90 BPM  
+– Sharpen “correction made” tone  
+
+---
+
+## 📅 Weekly Focus
+
+| Week | Area | Metric | Target |
+| --- | --- | --- | --- |
+| 1 | Phrase clarity | % clear speech | 95% |
+| 2 | Timing accuracy | % on-beat | 90% |
+| 3 | Recovery smoothness | % natural resets | 90% |
+| 4 | Banter variation | # phrases rotated | 10+ |
+
+---
+
+*End of session log — save and review before next drill.*

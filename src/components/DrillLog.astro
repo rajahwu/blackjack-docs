@@ -1,0 +1,85 @@
+---
+import { useState, useEffect } from "react";
+
+const { fields = ["Date", "BPM", "Notes", "Score"] } = Astro.props;
+const storageKey = "dealer-drill-log";
+const [entries, setEntries] = useState([]);
+const [form, setForm] = useState({});
+
+useEffect(() => {
+  const saved = localStorage.getItem(storageKey);
+  if (saved) setEntries(JSON.parse(saved));
+}, []);
+
+const addEntry = () => {
+  const updated = [...entries, form];
+  setEntries(updated);
+  localStorage.setItem(storageKey, JSON.stringify(updated));
+  setForm({});
+};
+---
+
+<div class="drill-log">
+  <h3>Drill Log</h3>
+  <div class="inputs">
+    {fields.map((f) => (
+      <input
+        placeholder={f}
+        value={form[f] || ""}
+        onInput={(e) => setForm({ ...form, [f]: e.target.value })}
+      />
+    ))}
+    <button onClick={addEntry}>Add</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>{fields.map((f) => <th>{f}</th>)}</tr>
+    </thead>
+    <tbody>
+      {entries.map((entry) => (
+        <tr>
+          {fields.map((f) => <td>{entry[f]}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+.drill-log {
+  color: #00e6a8;
+  width: 100%;
+}
+.inputs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+input {
+  flex: 1;
+  background: #0f1117;
+  border: 1px solid #00e6a8;
+  color: #00e6a8;
+  border-radius: 4px;
+  padding: 0.3rem;
+}
+button {
+  background: #00e6a8;
+  color: #0f1117;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #00e6a8;
+  padding: 0.3rem;
+  text-align: center;
+}
+</style>

@@ -3,16 +3,71 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import DealerNote from "../../components/DealerNote.astro";
 ---
 
-<BaseLayout title="Trainer Notes">
-  <h2>Trainer Notes</h2>
-  <p>Dealer calls and standard phrases will go here.</p>
-  <DealerNote title="Eye Contact" icon="👀">
-    Remember to maintain eye contact with players when dealing cards.
+<BaseLayout title="Trainer Notes" description="Expanded tips and best practices for dealers.">
+  <h1 class="page-title">Trainer Notes</h1>
+  <p class="page-subtitle">Key concepts, best practices, and common mistakes to avoid. Review these notes regularly to build professional habits.</p>
+
+  <h2 class="section-title">Table Presence & Professionalism</h2>
+  <DealerNote title="Posture and Position" icon="🕴️">
+    <p>Stand straight, but relaxed. Keep your hands in view at all times, either resting lightly on the table rim or in the "neutral" position over the discard rack. Avoid leaning or crossing your arms.</p>
   </DealerNote>
-  <DealerNote title="Announcing Wins" icon="🏆">
-    Use a friendly tone when announcing wins to enhance player experience."
+  <DealerNote title="Eye Contact and Communication" icon="💬">
+    <p>Make brief, friendly eye contact with players. Acknowledge bets and decisions with a slight nod. Speak clearly and project your voice—don't mumble. Your voice is a tool for game control.</p>
   </DealerNote>
-  <DealerNote title="Shuffling" icon="🃏">
-    "Practice smooth shuffling techniques to keep the game flowing."
+
+  <h2 class="section-title">Card & Chip Handling</h2>
+  <DealerNote title="Clean Chip Handling" icon="🪙">
+    <p>Practice cutting and handling chips until it's smooth. Payouts should be "cut and stacked" cleanly before pushing to the player. Never splash chips. All payouts are placed, not thrown.</p>
+    <ul>
+        <li>Size your chip stacks correctly.</li>
+        <li>Learn to pick up and pay in one smooth motion.</li>
+        <li>Keep your working bank (float) organized.</li>
+    </ul>
   </DealerNote>
+  <DealerNote title="Card Placement" icon="🎴">
+    <p>Every card should land in a precise, designated spot. This "card-spotting" makes the game easy for players and cameras to read. Player cards go in front of the betting circle, dealer cards in front of the chip tray.</p>
+  </DealerNote>
+
+  <h2 class="section-title">Game Security & Procedure</h2>
+  <DealerNote title="Protecting the Game" icon="🔒">
+    <p>Your primary job is to protect the game. This means:</p>
+    <ul>
+        <li>Always clear your hands (clap or show palms) when leaving the table.</li>
+        <li>Tap the discard rack before and after shuffling.</li>
+        <li>Protect your hole card. Never "flash" it.</li>
+        <li>Call out large bets or non-standard plays to your floorperson.</li>
+    </ul>
+  </DealerNote>
+  <DealerNote title="Handling Mistakes" icon="🛠️">
+    <p>Mistakes will happen. The key is to stop immediately. <strong>DO NOT</strong> try to fix it yourself. Call "Floor!" or "Supervisor!" and wait for instructions. A calm, by-the-book recovery is more professional than a flustered, incorrect fix.</p>
+  </DealerNote>
+
 </BaseLayout>
+
+<style>
+    .page-title {
+        font-size: 2.5rem;
+        background: linear-gradient(135deg, #00e6a8, #5a4bff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 1.1rem;
+        color: #b3b3b3;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--border-color-dim);
+        padding-bottom: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        color: var(--accent);
+        margin: 3rem 0 1rem;
+        border-bottom: 2px solid var(--purple);
+        padding-bottom: 0.5rem;
+    }
+</style>

@@ -1,0 +1,46 @@
+---
+import { useEffect, useState } from "react";
+
+const { bpm = 100, count = 16 } = Astro.props;
+const interval = (60 / bpm) * 1000;
+const [activeIndex, setActiveIndex] = useState(0);
+
+useEffect(() => {
+  const id = setInterval(() => {
+    setActiveIndex((prev) => (prev + 1) % count);
+  }, interval);
+  return () => clearInterval(id);
+}, [bpm, count]);
+---
+
+<div class="beat-table">
+  {Array.from({ length: count }).map((_, i) => (
+    <div
+      class:list={["beat", { active: i === activeIndex }]}
+      style={`animation-duration:${interval}ms`}
+    ></div>
+  ))}
+</div>
+
+<style>
+.beat-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
+  gap: 6px;
+  margin-top: 1rem;
+}
+.beat {
+  height: 20px;
+  border-radius: 4px;
+  background: #222;
+  transition: background 0.2s;
+}
+.beat.active {
+  background: #00e6a8;
+  box-shadow: 0 0 10px #00e6a8;
+}
+</style>
+
+<script client:load is:inline>
+  {`export default function BeatTable() {}`}
+</script>

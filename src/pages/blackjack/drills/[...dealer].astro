@@ -1,20 +1,25 @@
 ---
-import { getCollection, getEntryBySlug } from "astro:content";
-import RehearsalSheetLayout from "../../../layouts/RehearsalSheetLayout.astro";
+// This dynamic page fetches and renders a single drill
+import { getCollection } from 'astro:content';
+import RehearsalSheetLayout from '../../../layouts/RehearsalSheetLayout.astro';
 
+// 1. This function is required for static site generation
+// It tells Astro which paths to build
 export async function getStaticPaths() {
-  const guides = await getCollection("dealer-guides");
-
-  return guides.map((guide) => ({
-    params: { dealer: guide.slug }, // this must match the [..dealer] param
-    props: { guide },
+  const allDrills = await getCollection('dealer-guides');
+  
+  return allDrills.map(drill => ({
+    params: { dealer: drill.slug },
+    props: { drill },
   }));
 }
 
-const { guide } = Astro.props;
-const { Content } = await guide.render();
+// 2. Get the specific drill for this page
+const { drill } = Astro.props;
+const { Content } = await drill.render();
 ---
 
-<RehearsalSheetLayout title={guide.data.title} description={guide.data.description}>
+<!-- 3. Render the layout and pass the MDX content -->
+<RehearsalSheetLayout frontmatter={drill.data}>
   <Content />
 </RehearsalSheetLayout>

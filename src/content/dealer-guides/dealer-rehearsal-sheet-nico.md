@@ -2,6 +2,7 @@
 title: "Dealer Rehearsal Sheet — Nico"
 description: "Digital edition for shuffle precision, verbal timing, and table presence training."
 tags: ["dealer training", "rehearsal", "blackjack"]
+difficulty: "beginner"
 ---
 
 # 🎯 **Dealer Rehearsal Sheet — “Nico”**

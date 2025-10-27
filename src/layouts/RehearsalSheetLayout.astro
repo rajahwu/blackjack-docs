@@ -1,144 +1,146 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
-import tableFelt from "../../assets/table-felt.svg";
+// This is the layout for an individual drill page.
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
 
-const { title, description } = Astro.props;
+type Props = {
+  // This frontmatter prop is automatically passed
+  // by the dynamic page using layout: ...
+  frontmatter: CollectionEntry<'dealer-guides'>['data'];
+};
+
+const { frontmatter } = Astro.props;
+const { title, description, tags, difficulty } = frontmatter;
 ---
 
-<BaseLayout title={title}>
-  <main class="sheet">
-    <header class="sheet-header">
-      <svg
-        class="hud-grid"
-        viewBox="0 0 1920 1080"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <pattern
-            id="grid"
-            width="80"
-            height="80"
-            patternUnits="userSpaceOnUse"
-          >
-            <path
-              d="M 80 0 L 0 0 0 80"
-              fill="none"
-              stroke="#00E6A8"
-              stroke-width="1"></path>
-          </pattern>
-        </defs>
-        <rect width="1920" height="1080" fill="url(#grid)" fill-opacity="0.3"
-        ></rect>
-      </svg>
-      <h1>{title}</h1>
-      {description && <p class="sheet-desc">{description}</p>}
-      <svg
-        width="500"
-        height="20"
-        viewBox="0 0 500 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#5A4BFF;stop-opacity:1"></stop>
-            <stop offset="100%" style="stop-color:#00E6A8;stop-opacity:1"
-            ></stop>
-          </linearGradient>
-        </defs>
-        <rect width="500" height="20" rx="10" fill="url(#grad)"></rect>
-      </svg>
+<BaseLayout title={title} description={description}>
+  <article class="drill-sheet">
+    <header class="drill-header">
+      <div class="header-content">
+        <span class="difficulty-badge {difficulty}">{difficulty}</span>
+        <h1 class="drill-title">{title}</h1>
+        <p class="drill-description">{description}</p>
+        <div class="tags">
+          {tags.map(tag => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      </div>
     </header>
 
-    <article class="sheet-body">
+    <div class="drill-content">
+      <!-- This is where the MD/MDX content will go -->
       <slot />
-    </article>
-  </main>
+    </div>
+  </article>
 </BaseLayout>
 
-<style define:vars={{ tableFelt: `url(${tableFelt.src})` }}>
-  :root {
-    --felt-bg: url("/src/assets/table-felt.svg");
-    --accent-cyan: #00e6a8;
-    --accent-violet: #5a4bff;
-    --text-light: #f5f5f5;
-    --text-dim: #b3b3b3;
-  }
+<style>
+    .drill-header {
+        padding: 2.5rem;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(90, 75, 255, 0.2), rgba(0, 230, 168, 0.1));
+        border: 1px solid var(--border-color-dim);
+        margin-bottom: 2.5rem;
+        box-shadow: 0 4px 15px rgba(0,0,0, 0.2);
+    }
 
-  .sheet {
-    background: var(--tableFelt) center/cover no-repeat;
-    color: var(--text-light);
-    min-height: 100vh;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    .difficulty-badge {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: capitalize;
+        margin-bottom: 1rem;
+    }
 
-  .sheet-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    position: relative;
-  }
+    .difficulty-badge.beginner {
+        background: rgba(0, 230, 168, 0.2);
+        color: #00e6a8;
+    }
+    .difficulty-badge.intermediate {
+        background: rgba(255, 165, 0, 0.2);
+        color: #ffa500;
+    }
+    .difficulty-badge.advanced {
+        background: rgba(255, 0, 0, 0.2);
+        color: #ff4d4d;
+    }
 
-  .sheet-header h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--accent-cyan);
-    letter-spacing: 0.04em;
-    margin: 1rem 0;
-  }
+    .drill-title {
+        font-size: 2.8rem;
+        color: #f5f5f5;
+        margin: 0 0 1rem 0;
+    }
 
-  .sheet-header .sheet-desc {
-    color: var(--text-dim);
-    font-size: 1.1rem;
-  }
+    .drill-description {
+        font-size: 1.2rem;
+        color: #b3b3b3;
+        margin: 0 0 1.5rem 0;
+        max-width: 700px;
+    }
 
-  .hud-grid {
-    opacity: 0.3;
-    width: 100%;
-    max-width: 800px;
-  }
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
 
-  .hud-bar {
-    margin-top: 1rem;
-    width: 100%;
-    max-width: 600px;
-  }
+    .tag {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.1);
+        color: #f5f5f5;
+        padding: 0.25rem 0.6rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
 
-  .sheet-body {
-    background: rgba(15, 17, 23, 0.75);
-    border: 1px solid rgba(0, 230, 168, 0.2);
-    box-shadow: 0 0 30px rgba(0, 230, 168, 0.25);
-    border-radius: 1rem;
-    padding: 2rem 3rem;
-    width: 100%;
-    max-width: 900px;
-    line-height: 1.7;
-  }
+    /* Styles for the MD/MDX content */
+    .drill-content {
+        line-height: 1.7;
+        font-size: 1.1rem;
+        color: #b3b3b3;
+    }
 
-  .sheet-body h2,
-  .sheet-body h3 {
-    color: var(--accent-cyan);
-    margin-top: 2rem;
-    border-bottom: 1px solid rgba(90, 75, 255, 0.4);
-    padding-bottom: 0.3rem;
-  }
+    .drill-content :global(h2) {
+        font-size: 1.8rem;
+        color: var(--accent);
+        margin: 2.5rem 0 1rem;
+        border-bottom: 2px solid var(--purple);
+        padding-bottom: 0.5rem;
+    }
 
-  .sheet-body table {
-    width: 100%;
-    margin-top: 1rem;
-    border-collapse: collapse;
-  }
+    .drill-content :global(h3) {
+        font-size: 1.4rem;
+        color: var(--accent);
+        margin: 2rem 0 1rem;
+    }
 
-  .sheet-body th,
-  .sheet-body td {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0.5rem 0.75rem;
-  }
+    .drill-content :global(p) {
+        margin: 1rem 0;
+    }
 
-  .sheet-body th {
-    background: rgba(90, 75, 255, 0.15);
-    color: var(--accent-cyan);
-  }
+    .drill-content :global(ul),
+    .drill-content :global(ol) {
+        margin: 1rem 0;
+        padding-left: 2rem;
+    }
+
+    .drill-content :global(li) {
+        margin: 0.5rem 0;
+    }
+
+    .drill-content :global(code) {
+        background: rgba(0,0,0, 0.3);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+
+    .drill-content :global(strong) {
+        color: #f5f5f5;
+        font-weight: 600;
+    }
 </style>
