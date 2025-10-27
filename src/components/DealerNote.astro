@@ -4,10 +4,10 @@ import phrasePanelBg from "../assets/phrase-panel-bg.svg";
 const { title = "Dealer Note", icon = "🎯" } = Astro.props;
 ---
 
-<section class="dealer-note">
+<section class="dealer-note" role="note" aria-label={title}>
   <div class="note-header">
-    <span class="icon">{icon}</span>
-    <h3>{title}</h3>
+    <span class="icon" aria-hidden="true">{icon}</span>
+    <h3 id={`note-${title.toLowerCase().replace(/\s+/g, "-")}`}>{title}</h3>
   </div>
   <div class="note-body">
     <slot />
