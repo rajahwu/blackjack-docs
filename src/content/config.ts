@@ -8,6 +8,7 @@ const dealerGuides = defineCollection({
     description: z.string(), // Make this required
     tags: z.array(z.string()).default([]),
     difficulty: z.enum(["beginner", "intermediate", "advanced"]).optional(),
+   date: z.string().optional(),
   }),
 });
 

@@ -27,5 +27,5 @@ const trainingLog = defineCollection({
 
 export const collections = {
   "dealer-guides": dealerGuides,
-  traininglog: trainingLog,
+  "traininglog": trainingLog,
 };
