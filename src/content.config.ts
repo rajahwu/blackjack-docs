@@ -8,6 +8,7 @@ const dealerGuides = defineCollection({
     date: z.string().optional(),
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
+    difficulty: z.enum(["beginner", "intermediate", "advanced"]).optional(),
   }),
 });
 
@@ -17,10 +18,13 @@ const trainingLog = defineCollection({
     z.object({
       drill: z.string(),
       duration: z.number().optional(),
+      durationMinutes: z.string().optional(),
+      focus: z.string().optional(),
       accuracy: z.number().optional(),
       bpm: z.number().optional(),
       streak: z.number().optional(),
       timestamp: z.string(),
+      notes: z.string().optional()
     })
   ),
 });

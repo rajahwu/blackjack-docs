@@ -1,5 +1,4 @@
 // src/drills/DealerRehearsal.tsx
-import React from "react";
 
 export default function DealerRehearsal() {
   return (

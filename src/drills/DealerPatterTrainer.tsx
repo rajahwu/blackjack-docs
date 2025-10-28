@@ -1,5 +1,4 @@
 // src/drills/DealerPatterTrainer.tsx
-import React from "react";
 
 export default function DealerPatterTrainer() {
   return (

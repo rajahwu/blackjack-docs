@@ -1,5 +1,4 @@
 // src/drills/CardValueTrainer.tsx
-import React from "react";
 
 export default function CardValueTrainer() {
   return (
