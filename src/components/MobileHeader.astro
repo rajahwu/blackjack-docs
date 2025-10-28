@@ -21,8 +21,8 @@ const links = [
 const visibleLinks = links.filter(link => !currentPath.startsWith(link.href));
 ---
 
-<article class="mobile-header flex items-center justify-between px-4 py-2 md:hidden">
-  <div class="flex flex-col items-center gap-2">
+<article class="mobile-header flex items-center justify-center px-4 py-2 md:hidden">
+  <div class="brand-logo flex justify-center items-center gap-2 py-6">
     <img src={dealerBadge.src} alt="Dealer Badge" class="h-6 w-6" />
     <div class="text-center text-xs font-semibold">GTTM Training</div>
   </div>
@@ -35,3 +35,9 @@ const visibleLinks = links.filter(link => !currentPath.startsWith(link.href));
     ))}
   </nav>
 </article>
+
+<style>
+  .brand-logo {
+    margin-right: 2rem;
+  }
+</style>

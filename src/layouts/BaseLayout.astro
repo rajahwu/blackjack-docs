@@ -7,7 +7,7 @@ import { ClientRouter } from "astro:transitions";
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title ? `${title} | Blackjack Docs` : "Blackjack Docs"}</title>
     <ClientRouter />
   </head>
@@ -16,3 +16,11 @@ import { ClientRouter } from "astro:transitions";
     <RouteDebugger />
   </body>
 </html>
+
+<style>
+  body {
+    width: 100%;
+    min-width: 100%;
+    overflow-x: hidden;
+  }
+</style>
