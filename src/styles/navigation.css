@@ -93,6 +93,10 @@
    border-radius: 4px;
    text-decoration: none;
    color: inherit;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+   gap: 0.5rem;
+
  }
 
  .mobile-header .nav-link.active {
