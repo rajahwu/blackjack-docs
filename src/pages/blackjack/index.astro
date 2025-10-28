@@ -1,44 +1,7 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
+// src/pages/blackjack/index.astro
+// This page now serves as a permanent redirect (301) to the main application dashboard, 
+// as this is the primary focus of the site.
+// The previous documentation content has been moved to a dedicated /docs and /dev routes as need.
+return Astro.redirect('/blackjack/dashboard', 301);
 ---
-
-<MainLayout>
-  <main class="prose max-w-3xl mx-auto p-8">
-    <h1 class="text-gold">Blackjack Trainer Docs</h1>
-    <p class="text-offwhite">
-      Welcome to the table. This is your guide to the <strong
-        >Blackjack Trainer</strong
-      > project — a modular, always‑up documentation system designed to make onboarding
-      effortless and strategy clear.
-    </p>
-
-    <section>
-      <h2>🚀 Quick Start</h2>
-      <pre><code>pnpm install
-pnpm dev</code></pre>
-      <p>Run the trainer locally and explore the <code>frontend/</code> app.</p>
-    </section>
-
-    <section>
-      <h2>🧭 Core Concepts</h2>
-      <ul>
-        <li><strong>Game Flow</strong> → deal → hit/stand → resolve</li>
-        <li><strong>Design System</strong> → tokens, prompts, brand kit</li>
-        <li>
-          <strong>Docs Philosophy</strong> → “Always up, always discoverable”
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>📂 Navigation</h2>
-      <ul>
-        <li><a href="blackjack/dashbord">Dashboard</a></li>
-        <li><a href="/blackjack/overview">Blackjack Overview</a></li>
-        <li><a href="/blackjack/drills">Drills</a></li>
-        <li><a href="/blackjack/phrasebook">Phrasebook</a></li>
-        <li><a href="/blackjack/trainer-note">Trainer Notes</a></li>
-      </ul>
-    </section>
-  </main>
-</MainLayout>
