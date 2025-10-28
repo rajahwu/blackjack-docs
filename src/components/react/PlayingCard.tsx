@@ -1,5 +1,5 @@
-import React from "react";
-import { CardValue, Suit } from "../utils/cards"; // Import types from your utility file
+// src/components/react/PlayingCard.tsx
+import { CardValue, Suit } from "../../utils/cards"; // Import types from your utility file
 
 interface PlayingCardProps {
   value: CardValue; // "2"–"10", "J", "Q", "K", "A"

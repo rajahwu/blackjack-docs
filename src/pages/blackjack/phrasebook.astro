@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 
 // Data for the phrasebook table
 const categories = [
@@ -45,7 +45,7 @@ const categories = [
 ];
 ---
 
-<BaseLayout title="Dealer Phrasebook" description="Standard calls and timing for blackjack dealing.">
+<MainLayout title="Dealer Phrasebook" description="Standard calls and timing for blackjack dealing.">
   <h1 class="page-title">Dealer Phrasebook</h1>
   <p class="page-subtitle">Standardized verbal calls are key to a professional, secure, and clear game. Practice these calls for timing and clarity.</p>
 
@@ -72,7 +72,7 @@ const categories = [
       </div>
     </section>
   ))}
-</BaseLayout>
+</MainLayout>
 
 <style>
     .page-title {

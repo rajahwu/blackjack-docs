@@ -1,0 +1,40 @@
+---
+// src/layouts/MainLayout.astro
+import BaseLayout from "./BaseLayout.astro";
+import Sidebar from "../components/Sidebar.astro";
+import "../styles/main-layout.css";
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="app-container">
+    <Sidebar />
+    <main class="main-content">
+      <slot />
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .app-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+    background: var(--bg);
+  }
+
+  .main-content {
+    padding: 2rem;
+    overflow-y: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .app-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

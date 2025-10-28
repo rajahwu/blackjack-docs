@@ -3,7 +3,7 @@ import CardValueTrainer from "./CardValueTrainer";
 import CardShuffleTrainer from "./CardShuffleTrainer";
 import DealerRhythmTrainer from "./DealerRhythmTrainer";
 import DealerPatterTrainer from "./DealerPatterTrainer";
-import DealerRehearsal from "./DealerRehearsal";
+import DealerRehearsal  from "./DealerRehearsal";
 
 export const drillRegistry = {
   "card-value-trainer": CardValueTrainer,

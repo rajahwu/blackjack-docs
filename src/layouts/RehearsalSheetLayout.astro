@@ -2,8 +2,8 @@
 // src/layouts/RehearsalSheetLayout.astro
 import "../styles/dealer-note.css";
 import "../styles/drill-sheet.css";
-import tableFelt from "../assets/felt-texture.png";
-
+// import tableFelt from "../assets/felt-texture.png";
+import bgPattern from "../assets/background.svg";
 import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
@@ -34,7 +34,7 @@ const {
         {
           tags.length > 0 && (
             <div class="tags">
-              {tags.map((tag) => (
+              {tags.map((tag: String) => (
                 <span class="tag">{tag}</span>
               ))}
             </div>
@@ -49,8 +49,13 @@ const {
   </article>
 </BaseLayout>
 
-<style define:vars={{ tableFelt: `url(${tableFelt.src})` }}>
+<style define:vars={{ bgPattern: `url(${bgPattern.src})` }}>
+  article.drill-sheet {
+    background: var(--bgPattern) center/cover no-repeat;
+  }
+</style>
+<!-- <style define:vars={{ tableFelt: `url(${tableFelt.src})` }}>
   article.drill-sheet {
     background: var(--tableFelt) center/cover no-repeat;
   }
-</style>
+</style> -->

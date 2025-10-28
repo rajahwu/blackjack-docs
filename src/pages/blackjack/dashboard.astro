@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 
 const logs = await getCollection("traininglog");
 
@@ -34,7 +34,7 @@ const streak = (() => {
 })();
 ---
 
-<BaseLayout title="Dealer Training Dashboard">
+<MainLayout title="Dealer Training Dashboard">
   <div class="min-h-screen bg-[url('/felt-texture.jpg')] bg-cover text-white p-8">
     <div class="bg-black/60 border border-green-700 rounded-3xl p-8 shadow-2xl backdrop-blur-md max-w-5xl mx-auto">
       <header class="mb-8 text-center">
@@ -106,4 +106,4 @@ const streak = (() => {
       </footer>
     </div>
   </div>
-</BaseLayout>
+</MainLayout>

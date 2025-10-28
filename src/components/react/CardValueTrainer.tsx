@@ -1,22 +1,16 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-// FIX 1: Using explicit relative path to the utility file.
 import { 
     Card as CardType, 
-    dealHand as dealHandUtility, // Renamed to avoid function name conflict
+    dealHand as dealHandUtility,
     calculateHandValue 
-} from '../../../utils/cards'; // Removing .ts extension often works better in this environment
-// FIX 2: Using explicit path for the sibling component.
+} from '../../utils/cards';
 import PlayingCard from './PlayingCard';
 
-
-// --- Card Container Component (Replaces the basic Card from before) ---
 interface CardContainerProps {
     card: CardType;
 }
 
 const CardContainer: React.FC<CardContainerProps> = ({ card }) => {
-    // The PlayingCard component needs 'value' and 'suit'
-    // We wrap it in a div to apply the fixed dimensions via CSS.
     return (
         <div className="card-container">
             <PlayingCard value={card.value} suit={card.suit} />
@@ -24,10 +18,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ card }) => {
     );
 };
 
-
-// --- Main Component ---
 const CardValueTrainer: React.FC = () => {
-    // Update state to use the imported CardType
     const [currentHand, setCurrentHand] = useState<CardType[]>([]);
     const [correctValue, setCorrectValue] = useState<number>(0);
     const [userAnswer, setUserAnswer] = useState<string>('');
@@ -36,26 +27,22 @@ const CardValueTrainer: React.FC = () => {
         className: 'feedback-msg' 
     });
 
-    // Use the imported utility function
     const dealHand = useCallback(() => {
-        // Generate a hand of 2, 3, or 4 cards using the utility
         const handSize = Math.floor(Math.random() * 3) + 2; 
         const newHand = dealHandUtility(handSize);
 
         setCurrentHand(newHand);
-        // Calculate value using the imported utility function
         setCorrectValue(calculateHandValue(newHand));
         setUserAnswer('');
         setFeedback({ message: '', className: 'feedback-msg' });
     }, []);
 
-    // Deal first hand on mount
     useEffect(() => {
         dealHand();
     }, [dealHand]);
 
     const checkAnswer = () => {
-        const answer = parseInt(userAnswer as string, 10);
+        const answer = parseInt(userAnswer, 10);
         
         if (isNaN(answer)) {
             setFeedback({ message: 'Please enter a valid number.', className: 'feedback-msg incorrect' });
@@ -81,10 +68,8 @@ const CardValueTrainer: React.FC = () => {
         }
     };
     
-    // Convert currentHand array (CardType[]) to a list of Card components
     const handComponents = useMemo(() => 
         currentHand.map((card, index) => (
-            // Use the wrapper CardContainer component
             <CardContainer key={index} card={card} /> 
         )), [currentHand]
     );
@@ -98,12 +83,10 @@ const CardValueTrainer: React.FC = () => {
             <div className="note-body">
                 <p>Calculate the total value of the hand shown. Aces (A) count as 11 unless the total is over 21, then they count as 1.</p>
                 
-                {/* Card Display */}
                 <div id="hand-display" className="hand-container">
                     {handComponents}
                 </div>
                 
-                {/* Controls */}
                 <div className="controls-container">
                     <div className="input-group">
                         <label htmlFor="hand-value-input">Your Answer:</label>
@@ -132,16 +115,12 @@ const CardValueTrainer: React.FC = () => {
                     </button>
                 </div>
 
-                {/* Feedback Message */}
                 <div id="feedback-message" className={feedback.className}>
                     {feedback.message}
                 </div>
             </div>
             
-            {/* Styles are kept here for a self-contained component */}
-            <style>
-                {`
-                /* General Styling - Adjusted for React/TSX */
+            <style>{`
                 .dealer-note {
                     position: relative;
                     background: rgba(90, 75, 255, 0.15); 
@@ -177,31 +156,20 @@ const CardValueTrainer: React.FC = () => {
                 .note-body p {
                     margin: 0.3rem 0;
                 }
-
-                /* Specific Trainer Styles */
                 .hand-container {
                     display: flex;
-                    gap: 0.5rem; /* Reduced gap since cards are wider */
+                    gap: 0.5rem;
                     margin: 1.5rem 0;
                     justify-content: center;
                     min-height: 120px;
                 }
-
-                /* New Card Container Class */
                 .card-container {
-                    /* The SVG's viewBox is 150x210 (aspect ratio 0.714) */
                     width: 75px; 
                     height: 105px;
-                    
-                    /* Ensures the PlayingCard SVG scales to fit these dimensions */
                     display: block; 
                     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                    border-radius: 12px; /* Matches the SVG's border radius */
+                    border-radius: 12px;
                 }
-
-                /* Removed old .card styling */
-
-
                 .controls-container {
                     display: flex;
                     flex-wrap: wrap;
@@ -209,34 +177,29 @@ const CardValueTrainer: React.FC = () => {
                     align-items: center;
                     margin-top: 1rem;
                 }
-
                 .input-group {
                     display: flex;
                     flex-direction: column;
                     gap: 0.25rem;
                 }
-
                 .input-group label {
                     font-size: 0.9rem;
-                    color: #00e6a8; /* --accent fallback */
+                    color: #00e6a8;
                 }
-                
                 .input-group input {
                     background: rgba(0,0,0,0.2);
-                    border: 1px solid rgba(0, 230, 168, 0.2); /* --border-color-dim fallback */
+                    border: 1px solid rgba(0, 230, 168, 0.2);
                     border-radius: 6px;
                     padding: 0.5rem 0.75rem;
                     color: #f5f5f5;
                     font-size: 1rem;
                     width: 120px;
                 }
-                
                 .input-group input:focus {
                     outline: none;
-                    border-color: #00e6a8; /* --accent fallback */
+                    border-color: #00e6a8;
                     box-shadow: 0 0 10px rgba(0, 230, 168, 0.5);
                 }
-
                 .trainer-btn {
                     padding: 0.6rem 1rem;
                     border: none;
@@ -247,44 +210,37 @@ const CardValueTrainer: React.FC = () => {
                     transition: all 0.2s ease;
                     align-self: flex-end;
                 }
-                
                 .trainer-btn.check {
-                    background-color: #00e6a8; /* --accent fallback */
-                    color: #121212; /* --bg fallback */
+                    background-color: #00e6a8;
+                    color: #121212;
                 }
                 .trainer-btn.check:hover {
                     opacity: 0.8;
                 }
-
                 .trainer-btn.deal {
-                    background-color: #5a4bff; /* --purple fallback */
+                    background-color: #5a4bff;
                     color: #f5f5f5;
                 }
                 .trainer-btn.deal:hover {
                     opacity: 0.8;
                 }
-
                 .feedback-msg {
                     margin-top: 1rem;
                     font-size: 1.1rem;
                     font-weight: 600;
                     min-height: 1.5rem;
                 }
-
                 .feedback-msg.correct {
-                    color: #00e6a8; /* --accent fallback */
+                    color: #00e6a8;
                 }
-
                 .feedback-msg.incorrect {
                     color: #ff4d4d;
                 }
-                `}
-            </style>
+            `}</style>
         </section>
     );
 };
 
-// Simple style to mock the background and keep the structure clean in React
 const containerStyles: React.CSSProperties = {
     position: 'relative',
     backgroundSize: 'cover',
@@ -293,4 +249,3 @@ const containerStyles: React.CSSProperties = {
 };
 
 export default CardValueTrainer;
-

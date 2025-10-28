@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 import DealerNote from "../../components/DealerNote.astro";
 import { getCollection } from "astro:content";
 
@@ -15,7 +15,7 @@ const stats = [
 ];
 ---
 
-<BaseLayout title="Blackjack Overview" description="Master the table with GTTM training">
+<MainLayout title="Blackjack Overview" description="Master the table with GTTM training">
   
   <!-- Hero Section -->
   <section class="hero">
@@ -122,7 +122,7 @@ const stats = [
     </div>
   </section>
 
-</BaseLayout>
+</MainLayout>
 
 <style>
   /* Hero Section */
