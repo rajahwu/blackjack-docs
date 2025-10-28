@@ -10,41 +10,52 @@ const guides = await getCollection("dealer-guides");
 ---
 
 <MainLayout title="Dealer Drills">
-  <header class="header">
-    <h1 class="page-title">Dealer Rehearsal Sheets</h1>
-    <p class="intro page-subtitle">
-      Practice your dealing routines and refresh your card handling timing.  
-      Use the Card Value Trainer below to warm up before each session.
-    </p>
-  </header>
+    <header class="header">
+        <h1 class="page-title">Dealer Rehearsal Sheets</h1>
+        <div class="page-subtitle">
+            <p>
+                Practice your dealing routines and refresh your card handling
+                timing.
+            </p>
+            <p>
+                Use the Card Value Trainer below to warm up before each session.
+            </p>
+        </div>
+    </header>
 
-  <!-- Interactive trainer -->
-  <section class="trainer">
-    <h2>Card Value Trainer</h2>
-    <CardValueTrainer client:load />
-  </section>
+    <!-- Interactive trainer -->
+    <section class="trainer">
+        <h2 class="category-title">Card Value Trainer</h2>
+        <CardValueTrainer client:load />
+    </section>
 
-  <!-- List of all rehearsal sheets -->
-  <section class="guide-list">
-    <h2>Rehearsal Sheets</h2>
-    <ul>
-      {guides.map(guide => (
-        <li>
-          <a href={`/blackjack/drills/${guide.slug}/`}>
-            {guide.data.title}
-          </a>
-          {guide.data.description && (
-            <p class="desc">{guide.data.description}</p>
-          )}
-        </li>
-      ))}
-    </ul>
-  </section>
+    <!-- List of all rehearsal sheets -->
+    <section class="guide-list">
+        <h2 class="category-title">Rehearsal Sheets</h2>
+        <ul>
+            {
+                guides.map((guide) => (
+                    <li>
+                                 {" "}
+                        <a href={`/blackjack/drills/${guide.slug}/`}>
+                                        {guide.data.title}         {" "}
+                        </a>
+                                 {" "}
+                        {guide.data.description && (
+                            <p class="desc">{guide.data.description}</p>
+                        )}
+                               {" "}
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
 </MainLayout>
 
-  <style>
-    /* Added minimal styles for better presentation */
-    .header, .trainer, .guide-list {
+<style>
+        .header,
+    .trainer,
+    .guide-list {
         padding: 1.5rem 1rem;
         max-width: 800px;
         margin: 0 auto;
@@ -94,4 +105,17 @@ const guides = await getCollection("dealer-guides");
         font-size: 0.9rem;
         color: #666;
     }
-  </style>
+
+    .phrase-category {
+        margin-bottom: 3rem;
+    }
+    
+    .category-title {
+        font-size: 1.8rem;
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid var(--purple);
+        padding-bottom: 0.5rem;
+        /* display: inline-block; */
+    }
+</style>

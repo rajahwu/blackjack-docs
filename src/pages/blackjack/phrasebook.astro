@@ -4,15 +4,6 @@ import MainLayout from "../../layouts/MainLayout.astro";
 // Data for the phrasebook table
 const categories = [
   {
-    name: "Opening Table",
-    phrases: [
-      { call: "Good morning/afternoon/evening, everyone.", timing: "As players first approach the table." },
-      { call: "Changing in, five hundred dollars.", timing: "When exchanging cash for chips." },
-      { call: "Cheque change, five hundred.", timing: "Announcing to pit boss/cameras." },
-      { call: "Your chips, sir/ma'am. Good luck.", timing: "Pushing chips to the player." },
-    ],
-  },
-  {
     name: "Gameplay Calls",
     phrases: [
       { call: "Bets, please.", timing: "To initiate the betting round." },
@@ -24,7 +15,7 @@ const categories = [
       { call: "Insurance is closed.", timing: "After checking hole card or time elapses." },
     ],
   },
-    {
+  {
     name: "Player Actions",
     phrases: [
       { call: "Sixteen. (Hit or Stand?)", timing: "Clarifying player's hand total on a decision point." },
@@ -40,6 +31,15 @@ const categories = [
       { call: "Dealer takes.", timing: "Collecting a losing bet." },
       { call: "Push, twenty-two.", timing: "Both player and dealer have same total." },
       { call: "Even money.", timing: "Paying 1:1 on a Blackjack with dealer Ace up." },
+    ],
+  },
+  {
+    name: "Opening Table",
+    phrases: [
+      { call: "Good morning/afternoon/evening, everyone.", timing: "As players first approach the table." },
+      { call: "Changing in, five hundred dollars.", timing: "When exchanging cash for chips." },
+      { call: "Cheque change, five hundred.", timing: "Announcing to pit boss/cameras." },
+      { call: "Your chips, sir/ma'am. Good luck.", timing: "Pushing chips to the player." },
     ],
   },
 ];
