@@ -5,6 +5,7 @@ import '../../../styles/drill-sheet.css';
 import '../../../styles/guide.css';
 import { getCollection } from 'astro:content';
 import RehearsalSheetLayout from '../../../layouts/RehearsalSheetLayout.astro';
+import MainLayout from '../../../layouts/MainLayout.astro';
 
 export async function getStaticPaths() {
   const dealerGuides = await getCollection('dealer-guides');
@@ -25,7 +26,8 @@ const frontmatter = {
   difficulty: entry.data.difficulty,
 };
 ---
-
-<RehearsalSheetLayout frontmatter={frontmatter}>
-  <Content />
-</RehearsalSheetLayout>
+<MainLayout>
+  <RehearsalSheetLayout frontmatter={frontmatter}>
+    <Content />
+  </RehearsalSheetLayout>
+</MainLayout>

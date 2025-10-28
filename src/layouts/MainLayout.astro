@@ -2,6 +2,7 @@
 // src/layouts/MainLayout.astro
 import BaseLayout from "./BaseLayout.astro";
 import Sidebar from "../components/Sidebar.astro";
+import MobileHeader from "../components/MobileHeader.astro";
 import "../styles/main-layout.css";
 
 const { title, description } = Astro.props;
@@ -9,6 +10,7 @@ const { title, description } = Astro.props;
 
 <BaseLayout title={title} description={description}>
   <div class="app-container">
+    <MobileHeader />
     <Sidebar />
     <main class="main-content">
       <slot />

@@ -1,0 +1,37 @@
+---
+// MobileHeader.astro
+import '../styles/navigation.css';
+import dealerBadge from "../assets/dealer-badge.svg";
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (path: string) => {
+  if (path === '/blackjack/overview') return currentPath === path;
+  return currentPath.startsWith(path);
+};
+
+
+const links = [
+  { href: "/blackjack/dashboard", label: "Dashboard" },
+  { href: "/blackjack/overview", label: "Rehearsal Overview" },
+  { href: "/blackjack/drills", label: "Dealer Drills" },
+  { href: "/blackjack/phrasebook", label: "Phrasebook" },
+  { href: "/blackjack/trainer-notes", label: "Trainer Notes" },
+];
+const visibleLinks = links.filter(link => !currentPath.startsWith(link.href));
+---
+
+<article class="mobile-header flex items-center justify-between px-4 py-2 md:hidden">
+  <div class="flex items-center gap-2">
+    <img src={dealerBadge.src} alt="Dealer Badge" class="h-6 w-6" />
+    <span class="text-sm font-semibold">GTTM Training</span>
+  </div>
+
+  <nav class="mobile-nav flex gap-3 text-sm">
+    {visibleLinks.map(link => (
+      <a href={link.href} class:list={['nav-link', { active: isActive(link.href) }]}>
+        {link.label}
+      </a>
+    ))}
+  </nav>
+</article>

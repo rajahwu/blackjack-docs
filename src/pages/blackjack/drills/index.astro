@@ -2,6 +2,7 @@
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 import CardValueTrainer from "../../../components/react/CardValueTrainer";
+import "../../../styles/guide.css";
 
 // Fetch the collection data directly into the component's script block,
 // as this is a static index page, not a dynamic route generator.
@@ -9,13 +10,13 @@ const guides = await getCollection("dealer-guides");
 ---
 
 <MainLayout title="Dealer Drills">
-  <section class="header">
-    <h1>Dealer Rehearsal Sheets</h1>
-    <p class="intro">
+  <header class="header">
+    <h1 class="page-title">Dealer Rehearsal Sheets</h1>
+    <p class="intro page-subtitle">
       Practice your dealing routines and refresh your card handling timing.  
       Use the Card Value Trainer below to warm up before each session.
     </p>
-  </section>
+  </header>
 
   <!-- Interactive trainer -->
   <section class="trainer">

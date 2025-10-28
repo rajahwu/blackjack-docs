@@ -1,88 +1,122 @@
  .sidebar {
-    background: linear-gradient(180deg, rgba(15, 17, 23, 0.95), rgba(90, 75, 255, 0.1));
-    border-right: 2px solid rgba(0, 230, 168, 0.3);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    position: sticky;
-    top: 0;
-  }
+   background: linear-gradient(180deg, rgba(15, 17, 23, 0.95), rgba(90, 75, 255, 0.1));
+   border-right: 2px solid rgba(0, 230, 168, 0.3);
+   display: flex;
+   flex-direction: column;
+   height: 100vh;
+   position: sticky;
+   top: 0;
+ }
 
-  .dealer-badge {
-    background: linear-gradient(
-      180deg,
-      rgba(90, 75, 255, 0.3),
-      rgba(15, 17, 23, 0.9)
-    );
-    border-bottom: 1px solid rgba(0, 230, 168, 0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
-  }
+ .dealer-badge {
+   background: linear-gradient(180deg,
+       rgba(90, 75, 255, 0.3),
+       rgba(15, 17, 23, 0.9));
+   border-bottom: 1px solid rgba(0, 230, 168, 0.3);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   padding: 2rem 1rem;
+ }
 
-  .dealer-badge img {
-    width: 100px;
-    margin-bottom: 1rem;
-    filter: drop-shadow(0 0 8px rgba(0, 230, 168, 0.6));
-    animation: pulse 3s ease-in-out infinite;
-  }
+ .dealer-badge img {
+   width: 100px;
+   margin-bottom: 1rem;
+   filter: drop-shadow(0 0 8px rgba(0, 230, 168, 0.6));
+   animation: pulse 3s ease-in-out infinite;
+ }
 
-  @keyframes pulse {
-    0%, 100% {
-      filter: drop-shadow(0 0 8px rgba(0, 230, 168, 0.6));
-    }
-    50% {
-      filter: drop-shadow(0 0 16px rgba(0, 230, 168, 0.8));
-    }
-  }
+ @keyframes pulse {
 
-  .badge-label {
-    text-align: center;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    color: #00e6a8;
-    letter-spacing: 0.05em;
-    border-top: 1px solid rgba(0, 230, 168, 0.3);
-    padding-top: 0.5rem;
-    width: 100%;
-  }
+   0%,
+   100% {
+     filter: drop-shadow(0 0 8px rgba(0, 230, 168, 0.6));
+   }
 
-  .sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem 1rem;
-    gap: 0.5rem;
-    flex: 1;
-  }
+   50% {
+     filter: drop-shadow(0 0 16px rgba(0, 230, 168, 0.8));
+   }
+ }
 
-  .nav-link {
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    color: #b3b3b3;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    border: 1px solid transparent;
-  }
+ .badge-label {
+   text-align: center;
+   font-size: 0.9rem;
+   text-transform: uppercase;
+   color: #00e6a8;
+   letter-spacing: 0.05em;
+   border-top: 1px solid rgba(0, 230, 168, 0.3);
+   padding-top: 0.5rem;
+   width: 100%;
+ }
 
-  .nav-link:hover {
-    background: rgba(0, 230, 168, 0.1);
-    color: #00e6a8;
-    border-color: rgba(0, 230, 168, 0.3);
-  }
+ .sidebar-nav {
+   display: flex;
+   flex-direction: column;
+   padding: 1.5rem 1rem;
+   gap: 0.5rem;
+   flex: 1;
+ }
 
-  .nav-link.active {
-    background: linear-gradient(135deg, rgba(90, 75, 255, 0.3), rgba(0, 230, 168, 0.2));
-    color: #00e6a8;
-    font-weight: 600;
-    border-color: #00e6a8;
-    box-shadow: 0 4px 12px rgba(0, 230, 168, 0.3);
-  }
+ .nav-link {
+   padding: 0.75rem 1rem;
+   border-radius: 8px;
+   color: #b3b3b3;
+   text-decoration: none;
+   font-weight: 500;
+   transition: all 0.2s ease;
+   border: 1px solid transparent;
+ }
 
-  @media (max-width: 768px) {
-    .sidebar {
-      display: none;
-    }
+ .nav-link:hover {
+   background: rgba(0, 230, 168, 0.1);
+   color: #00e6a8;
+   border-color: rgba(0, 230, 168, 0.3);
+ }
+
+ .nav-link.active {
+   background: linear-gradient(135deg, rgba(90, 75, 255, 0.3), rgba(0, 230, 168, 0.2));
+   color: #00e6a8;
+   font-weight: 600;
+   border-color: #00e6a8;
+   box-shadow: 0 4px 12px rgba(0, 230, 168, 0.3);
+ }
+
+ .mobile-header {
+   background-color: #0f172a;
+   color: white;
+   border-bottom: 1px solid #334155;
+ }
+
+ .mobile-header .nav-link {
+   padding: 0.5rem;
+   border-radius: 4px;
+   text-decoration: none;
+   color: inherit;
+ }
+
+ .mobile-header .nav-link.active {
+   background-color: #1e293b;
+   font-weight: bold;
+ }
+
+ @media (max-width: 768px) {
+   .sidebar {
+     display: none;
+   }
+ }
+
+
+ /* .mobile-header {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #0f172a;
+  color: white;
+}
+
+@media (min-width: 769px) {
+  .mobile-header {
+    display: none;
   }
+} */
