@@ -1,24 +1,61 @@
-# build output
-dist/
+# Dependencies
+node_modules/
+.pnpm-store/
 
-# generated types
+# Build outputs
+dist/
 .astro/
 
-# dependencies
-node_modules/
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# environment variables
+# Environment variables
 .env
+.env.local
 .env.production
+.env.*.local
 
-# macOS-specific files
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
 
-# jetbrains setting folder
-.idea/
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+.cache/
+.temp/
+
+# Deployment
+.vercel
+.netlify
+.output/
+
+# Debug
+debug.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Local development
+.local/
+
+# Optional: training logs (if you want to keep them local)
+# content/traininglog/*.json
