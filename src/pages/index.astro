@@ -3,29 +3,40 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Welcome to the Trainer">
-  <div class="flex flex-col items-center justify-center min-h-[70vh] text-center p-4">
-    <h1 class="text-5xl font-extrabold text-gray-800 dark:text-gray-100 mb-4 tracking-tight">
-      Blackjack Professional Trainer
-    </h1>
-    <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mb-10">
-      Master your dealing skills, review essential routines, and sharpen your game knowledge with focused drills and guides.
-    </p>
-
-    <!-- Main Call to Action -->
-    <a 
-      href="/blackjack/dashboard"
-      class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 ease-in-out shadow-lg transform hover:scale-105"
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blackjack Doc</title>
+  </head>
+  <BaseLayout title="Welcome to the Trainer">
+    <div
+      class="flex flex-col items-center justify-center min-h-[70vh] text-center p-4"
     >
-      Start Your Training Now
-    </a>
+      <h1
+        class="text-5xl font-extrabold text-gray-800 dark:text-gray-100 mb-4 tracking-tight"
+      >
+        Blackjack Professional Trainer
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mb-10">
+        Master your dealing skills, review essential routines, and sharpen your
+        game knowledge with focused drills and guides.
+      </p>
 
-    <!-- Secondary Links -->
-    <div class="mt-12 space-x-6 text-sm text-gray-500 dark:text-gray-400">
-      <a href="/blackjack/drills" class="hover:underline">Explore Drills</a>
-      <span>|</span>
-      <a href="/about" class="hover:underline">About This Project</a>
+      <!-- Main Call to Action -->
+      <a
+        href="/blackjack/dashboard"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 ease-in-out shadow-lg transform hover:scale-105"
+      >
+        Start Your Training Now
+      </a>
+
+      <!-- Secondary Links -->
+      <div class="mt-12 space-x-6 text-sm text-gray-500 dark:text-gray-400">
+        <a href="/blackjack/drills" class="hover:underline">Explore Drills</a>
+        <span>|</span>
+        <a href="/about" class="hover:underline">About This Project</a>
+      </div>
     </div>
-
-  </div>
-</BaseLayout>
+  </BaseLayout>
+</html>
