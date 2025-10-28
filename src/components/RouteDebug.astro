@@ -1,0 +1,8 @@
+---
+// src/components/RouteDebug.astro
+// Only show in development mode
+const isDev = import.meta.env.DEV;
+import RouteDebugger from './react/RouteDebugger';
+---
+
+{isDev && <RouteDebugger client:load />}

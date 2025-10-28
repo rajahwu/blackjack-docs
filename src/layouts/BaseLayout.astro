@@ -1,6 +1,6 @@
 ---
 const { title } = Astro.props;
-// import Sidebar from "../components/Sidebar.astro";
+import RouteDebugger from "../components/react/RouteDebugger";
 import "../styles/global.css";
 ---
 <html lang="en">
@@ -10,5 +10,6 @@ import "../styles/global.css";
   </head>
   <body class="font-sans bg-black text-white min-h-screen">
     <slot />
+    <RouteDebugger />
   </body>
 </html>
